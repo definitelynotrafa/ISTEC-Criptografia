@@ -118,5 +118,5 @@ echo "127.0.0.1 ${SERVER_CN} ${SERVER_CN}A ${SERVER_CN}B" >> /etc/hosts
 echo "-- Restarting Apache ..."
 service apache2 restart
 
-echo "=== Done! Teste com: curl -vk https://${SERVER_CN}/ ==="
+echo "=== Done! Testa com: curl -vk https://${SERVER_CN}/ ==="
 echo "FORA DO DOCKER: adicionar 10.9.0.80 www.antixerox2025 ao /etc/hosts"
