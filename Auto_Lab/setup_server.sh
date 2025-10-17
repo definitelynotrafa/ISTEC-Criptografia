@@ -1,37 +1,37 @@
 #!/bin/bash
 set -e
-# setup_server.sh
-# Uso: ./setup_server.sh <hostname>  (ex: ./setup_server.sh www.antixerox.com)
-# Gera CA (se não existir), gera server key/CSR+cert com SAN (hostname), cria server_chain.pem e arranca servidor TLS simples.
+# setup_tls_server_dns.sh
+# Uso: ./setup_tls_server_dns.sh <hostname> <ip>
+# Gera certificado "certificado" para www.antixerox.com e IP 10.9.0.43 e arranca servidor TLS
 
-if [ -z "$1" ]; then
-  echo "Usage: $0 <hostname> (ex: www.antixerox.com or admin.antixerox2025)"
-  exit 1
+if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage: $0 <hostname> <ip> (ex: www.antixerox.com 10.9.0.43)"
+    exit 1
 fi
+
 HOST="$1"
+IP="$2"
 WORKDIR="$(pwd)"
 
-echo "[*] Cleaning old artifacts..."
-rm -f server.key server.csr server.crt server_chain.pem
-rm -f server_www.key server_www.csr server_www.crt
+echo "[*] Limpando artefatos antigos..."
+rm -f certificado.key certificado.crt server_chain.pem
 rm -rf demoCA
-mkdir -p demoCA/newcerts demoCA/certs demoCA/crl demoCA/private client-certs server-certs
-
+mkdir -p demoCA/newcerts demoCA/private demoCA/certs
 touch demoCA/index.txt
 echo 1000 > demoCA/serial
 
-# Create CA if not exists
+# Criar CA se não existir
 if [ ! -f ca.key ] || [ ! -f ca.crt ]; then
-  echo "[*] Creating CA..."
-  openssl req -x509 -newkey rsa:2048 -days 3650 -nodes \
-    -keyout ca.key -out ca.crt \
-    -subj "/C=PT/O=AntixeroxLab/CN=AntixeroxLab-CA"
+    echo "[*] Criando CA..."
+    openssl req -x509 -newkey rsa:2048 -days 3650 -nodes \
+        -keyout ca.key -out ca.crt \
+        -subj "/C=PT/O=AntixeroxLab/CN=AntixeroxLab-CA"
 else
-  echo "[*] CA already exists (ca.key, ca.crt)"
+    echo "[*] CA já existe (ca.key, ca.crt)"
 fi
 
-# Create server_openssl.cnf for SAN including HOST and localhost
-cat > server_openssl.cnf <<EOF
+# Criar arquivo OpenSSL para CSR com SAN
+cat > certificado_openssl.cnf <<EOF
 [ req ]
 prompt = no
 distinguished_name = req_distinguished_name
@@ -48,77 +48,91 @@ subjectAltName = @alt_names
 [ alt_names ]
 DNS.1 = ${HOST}
 DNS.2 = localhost
-IP.1  = 127.0.0.1
+IP.1  = ${IP}
+IP.2  = 127.0.0.1
 EOF
 
-echo "[*] Generating server key and CSR for ${HOST}..."
-openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr -config server_openssl.cnf
+echo "[*] Gerando chave e CSR do servidor..."
+openssl req -newkey rsa:2048 -nodes -keyout certificado.key -out certificado.csr -config certificado_openssl.cnf
 
-# Prepare myopenssl.cnf: copy system and enable copy_extensions; set CA dirs
-cp /etc/ssl/openssl.cnf myopenssl.cnf || true
-# ensure copy_extensions enabled
-sed -i 's/^# *copy_extensions = copy/copy_extensions = copy/' myopenssl.cnf || true
+echo "[*] Assinando CSR com a CA..."
+openssl x509 -req -in certificado.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out certificado.crt -days 3650 -sha256 -extensions req_ext -extfile certificado_openssl.cnf
 
-# Append CA_default settings if not present (keeps simple)
-cat >> myopenssl.cnf <<EOF
+echo "[*] Criando server_chain.pem..."
+cat certificado.crt ca.crt > server_chain.pem
 
-[ CA_default ]
-dir               = ${WORKDIR}/demoCA
-new_certs_dir     = \$dir/newcerts
-database          = \$dir/index.txt
-serial            = \$dir/serial
-private_key       = ${WORKDIR}/ca.key
-certificate       = ${WORKDIR}/ca.crt
-default_days      = 3650
-default_md        = sha256
-policy            = policy_any
-copy_extensions   = copy
-
-[ policy_any ]
-countryName             = optional
-stateOrProvinceName     = optional
-organizationName        = optional
-organizationalUnitName  = optional
-commonName              = supplied
-emailAddress            = optional
-EOF
-
-echo "[*] Signing CSR with CA (this may print warnings about missing fields — OK for lab)..."
-openssl ca -config ./myopenssl.cnf -batch -in server.csr -out server.crt -cert ca.crt -keyfile ca.key || \
-  { echo "[!] openssl ca failed — attempting fallback signing with x509"; openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 3650 -sha256; }
-
-echo "[*] Building server_chain.pem..."
-cat server.crt ca.crt > server_chain.pem
-
-# Create client-certs trust dir with hashed symlink
-mkdir -p client-certs
-cp ca.crt client-certs/ca_cert.pem
-HASH=$(openssl x509 -in client-certs/ca_cert.pem -noout -subject_hash 2>/dev/null | head -n1)
-ln -sf ca_cert.pem client-certs/${HASH}.0
-
-echo "[*] Starting simple TLS test server on port 4433 (foreground). Ctrl-C to stop."
-cat > server_run.py <<'PY'
+# Criar servidor Python TLS simples
+cat > server_run.py <<PY
 #!/usr/bin/env python3
-import socket, ssl, pprint
-html = b"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<h1>Antixerox TLS server for: %s</h1>" % b"${HOST}"
+import socket, ssl
+
+HOST = '0.0.0.0'
+PORT = 4433
+html = b"""
+HTTP/1.1 200 OK
+Content-Type: text/html
+
+<!DOCTYPE html>
+<html lang='pt-BR'>
+<head>
+<meta charset='UTF-8'>
+<title>Antixerox Criptografia</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        font-family: 'Courier New', Courier, monospace;
+        color: #00ffcc;
+    }
+    h1 {
+        font-size: 3em;
+        text-transform: uppercase;
+        text-shadow:
+            0 0 5px #00ffcc,
+            0 0 10px #00ffcc,
+            0 0 20px #00ffcc,
+            0 0 40px #00ffcc;
+        animation: glow 1.5s infinite alternate;
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc; }
+        to   { text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc; }
+    }
+</style>
+</head>
+<body>
+    <h1>Antixerox Criptografia</h1>
+</body>
+</html>
+"""
+
 context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-context.load_cert_chain(certfile="server_chain.pem", keyfile="server.key")
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind(('0.0.0.0', 4433))
-sock.listen(5)
-print("[*] TLS server listening on 0.0.0.0:4433")
-while True:
-    newsock, addr = sock.accept()
-    try:
-        ssock = context.wrap_socket(newsock, server_side=True)
-        print("[*] TLS connection from", addr)
-        data = ssock.recv(4096)
-        pprint.pprint(data)
-        ssock.sendall(html)
-        ssock.shutdown(socket.SHUT_RDWR)
-        ssock.close()
-    except Exception as e:
-        print("[!] Connection failed:", e)
+context.load_cert_chain(certfile="server_chain.pem", keyfile="certificado.key")
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+    sock.bind((HOST, PORT))
+    sock.listen(5)
+    print(f"[*] TLS server listening on {HOST}:{PORT}")
+    while True:
+        newsock, addr = sock.accept()
+        try:
+            with context.wrap_socket(newsock, server_side=True) as ssock:
+                print("[*] Conexão TLS de", addr)
+                data = ssock.recv(4096)
+                ssock.sendall(html)
+        except Exception as e:
+            print("[!] Conexão falhou:", e)
 PY
 
+chmod +x server_run.py
+
+echo "[*] Adicione a linha no /etc/hosts se necessário:"
+echo "   ${IP} ${HOST}"
+
+echo "[*] Iniciando servidor TLS na porta 4433..."
 python3 server_run.py
