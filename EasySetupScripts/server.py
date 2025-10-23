@@ -1,47 +1,50 @@
 #!/usr/bin/env python3
 """
 server.py - Simple TLS server for the SEED lab
-Usage:
-  python3 server.py --cert ./serverCerts/server.crt --key ./serverCerts/server.key --port 443
-Note: Binding to port 443 may requer root. Para testes, usa porta 8443.
+Distinguishes subdomains:
+  - admin.xerox.lab -> "Olá Admin!"
+  - xerox.lab       -> "Olá!"
 """
 import socket, ssl, argparse, threading
 
-html = """
-HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n
+# Template HTML com CSS
+HTML_TEMPLATE = """HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: {length}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Xerox Lab Server</title>
+    <title>{title}</title>
     <style>
-        body {
+        body {{
             background-color: #f0f8ff;
             font-family: Arial, sans-serif;
             text-align: center;
             padding-top: 50px;
-        }
-        h1 {
+        }}
+        h1 {{
             color: #3333cc;
             font-size: 48px;
-        }
-        p {
+        }}
+        p {{
             color: #666666;
             font-size: 24px;
-        }
-        .box {
+        }}
+        .box {{
             display: inline-block;
             padding: 20px 40px;
             border: 2px solid #3333cc;
             border-radius: 10px;
             background-color: #ffffff;
-        }
+        }}
     </style>
 </head>
 <body>
     <div class="box">
-        <h1>Hello, Admin!</h1>
-        <p>Welcome to admin.xerox.lab</p>
+        <h1>{heading}</h1>
+        <p>{message}</p>
     </div>
 </body>
 </html>
@@ -50,20 +53,40 @@ HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n
 def handle_connection(connstream, addr):
     try:
         print(f"[+] Connection from {addr}")
-        # read request (simple)
-        data = b''
+        # lê headers HTTP
+        request = b""
         connstream.settimeout(2.0)
         try:
-            data = connstream.recv(4096)
+            while True:
+                chunk = connstream.recv(2048)
+                if not chunk:
+                    break
+                request += chunk
+                if b"\r\n\r\n" in request:
+                    break
         except Exception:
             pass
-        if data:
-            print(f"--- request (first 1024 bytes) from {addr} ---")
-            print(data[:1024].decode(errors='replace'))
-        # send response
-        body_bytes = BODY.encode('utf-8')
-        resp = HTML.format(length=len(body_bytes), body=BODY).encode('utf-8')
-        connstream.sendall(resp)
+
+        host_header = b""
+        for line in request.split(b"\r\n"):
+            if line.lower().startswith(b"host:"):
+                host_header = line.split(b":",1)[1].strip()
+                break
+        host = host_header.decode() if host_header else ""
+
+        # escolhe HTML dependendo do host
+        if "admin.xerox.lab" in host:
+            title, heading, message = "Admin Page", "Olá Admin!", "Bem-vindo ao admin.xerox.lab"
+        else:
+            title, heading, message = "Xerox Lab", "Olá!", "Bem-vindo ao xerox.lab"
+
+        body = HTML_TEMPLATE.format(title=title, heading=heading, message=message, length=0)
+        body_bytes = body.encode("utf-8")
+        # atualiza Content-Length
+        body_bytes = body_bytes.replace(b"Content-Length: 0", f"Content-Length: {len(body_bytes)}".encode())
+
+        connstream.sendall(body_bytes)
+
     except Exception as e:
         print(f"[!] Error handling connection {addr}: {e}")
     finally:
@@ -83,10 +106,10 @@ def main():
     args = parser.parse_args()
 
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    context.options |= ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1  # prefer modern TLS
+    context.options |= ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1
     context.load_cert_chain(certfile=args.cert, keyfile=args.key)
 
-    bindsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
+    bindsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     bindsock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     bindsock.bind((args.addr, args.port))
     bindsock.listen(8)
