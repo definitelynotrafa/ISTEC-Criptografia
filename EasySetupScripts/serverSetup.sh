@@ -3,7 +3,7 @@ set -e
 
 # === CONFIGURAÇÕES ===
 HOSTNAME_FQDN="xerox.lab"
-ALT_NAMES="DNS:xerox.lab,DNS:www.xerox.lab"
+ALT_NAMES="DNS:xerox.lab,DNS:www.xerox.lab,DNS:admin.xerox.lab"
 ORG="XeroxLab"
 COUNTRY="PT"
 STATE="Porto"
@@ -36,9 +36,10 @@ CN = $HOSTNAME_FQDN
 [ req_ext ]
 subjectAltName = @alt_names
 
-[ alt_names ]
+[alt_names]
 DNS.1 = xerox.lab
 DNS.2 = www.xerox.lab
+DNS.3 = admin.xerox.lab
 EOF
 
 openssl req -newkey rsa:2048 -nodes -keyout serverCerts/server.key \
