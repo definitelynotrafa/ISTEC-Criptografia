@@ -6,8 +6,8 @@ HOSTNAME_FQDN="xerox.lab"
 ALT_NAMES="DNS:xerox.lab,DNS:www.xerox.lab"
 ORG="XeroxLab"
 COUNTRY="PT"
-STATE="Lisbon"
-CITY="Lisbon"
+STATE="Porto"
+CITY="Porto"
 DAYS_CA=3650
 DAYS_SERVER=365
 
