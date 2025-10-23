@@ -7,8 +7,45 @@ Note: Binding to port 443 may requer root. Para testes, usa porta 8443.
 """
 import socket, ssl, argparse, threading
 
-HTML = b"""HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: {length}\r\n\r\n{body}"""
-BODY = "<!DOCTYPE html><html><body><h1>Hello from TLS server!</h1><p>Served by server.py</p></body></html>"
+html = """
+HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xerox Lab Server</title>
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            color: #3333cc;
+            font-size: 48px;
+        }
+        p {
+            color: #666666;
+            font-size: 24px;
+        }
+        .box {
+            display: inline-block;
+            padding: 20px 40px;
+            border: 2px solid #3333cc;
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Hello, Admin!</h1>
+        <p>Welcome to admin.xerox.lab</p>
+    </div>
+</body>
+</html>
+"""
 
 def handle_connection(connstream, addr):
     try:
