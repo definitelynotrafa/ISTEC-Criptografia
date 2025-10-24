@@ -211,3 +211,5 @@ echo -n 'password' | md5sum
 * Documenta cada passo: comandos usados, hipóteses e resultados.
 
 ---
+
+### CHECK /opt/secure/.credentials
