@@ -13,4 +13,4 @@ Este repositório tem como objetivo documentar todos os seedlabs feitos durante 
 
 Cada pasta é um lab, alguns têm resolution scripts, ou seja, scripts que fazem o lab automáticamente, desde o setup até ao exploit.
 
-[https://github.com/definitelynotrafa](https://github.com/definitelynotrafa/ISTEC-Criptografia/edit/main/README.md)
+[https://github.com/definitelynotrafa](https://youtube.com)
