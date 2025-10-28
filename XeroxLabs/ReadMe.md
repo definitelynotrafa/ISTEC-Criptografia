@@ -97,3 +97,23 @@ From the lowest base to the highest!
 <summary>Answer</summary>
 Muda a extensão da imagem para pdf e verifica o conteúdo, depois desencripta com uma receita no cyberchef do base mais baixo para o mais alto.
 </details>
+
+## Passo 3:
+
+- Talvez já tenhas percebido que cada task requer mudar de utilizador para avançar, troca para o novo user que descobriste.
+- Explora a pasta deste novo utilizador, há alguma coisa que te chame a atenção?
+
+<details>
+<summary>Riddle</summary>
+mete aqui uma riddle depois rafa
+</details>
+
+<details>
+<summary>Hint</summary>
+Hash-Identifier
+</details>
+
+<details>
+<summary>Answer</summary>
+Aconselhamos a usar o site: https://md5hashing.net/hash/sha1 para crackar a hash já que o rockyou como wordlist demora imenso e acaba por exaustar o hashcat.
+</details>
