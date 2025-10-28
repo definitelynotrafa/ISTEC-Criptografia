@@ -33,8 +33,8 @@
 ## Artefatos fornecidos:
 
 > Neste fim de semana existiu uma pequena zeroday e um dos servidores da empresa Antixerox ficou vulnerável, tu, hacker mafarrico, tens o objetivo de tomar o controlo do servidor! Acede ao website para começar:
+
 > -> https://antixeroxcryptolab.netlify.app/
-> 
 ---
 
 ## Passo 1 — Inspeção inicial com ferramentas Linux
