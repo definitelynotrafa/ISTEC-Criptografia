@@ -53,6 +53,21 @@ Ainda tens dúvidas de quem eu sou?
   
 > Encontraste alguma coisa? Se sim, sabes o que fazer. Descriptografa o conteúdo do que encontraste e passa para o próximo passo!
 
+
+<details>
+<summary>Riddle 2</summary>
+Have you ever used hashcat?
+</details>
+
+<details>
+<summary>Riddle 3</summary>
+```hashcat -m 1400 -a 0 hashes.txt /path/to/wordlist.txt -o found.txt -w 3```
+  > ```-m 1400 = SHA‑256 (raw)```
+  > ```-a 0 = ataque por dicionário (dictionary attack)```
+  > ```-w 3 = perfil de workload agressivo```
+</details>
+
+
 ## Passo 2:
 
 - Se ainda não trocaste de utilizador com a password que encontraste, agora é a hora.
