@@ -1,7 +1,9 @@
 # SeedLab: AntiXerox!
 
 Este laboratório explica, passo a passo, como usar o CyberChef para descriptografar dados e como combinar ferramentas Linux (e *hash-identifier*) para analisar e identificar tipos de hash. O formato é um walkthrough prático onde tens acesso a uma máquina online: recebes artefatos, executas comandos no Linux e usas CyberChef para extrair informações.
+
 O objetivo final é sempre escalar para root. 
+
 Em cada passo há uma riddle que funciona como dica, podes clicar por cima da palavra e usar se achares necessário.
 
 ---
