@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    overflow: hidden;
+    height: 100vh;
+}
+
+#terminal {
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+#input-line {
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    color: #00ff00;
+    margin-right: 5px;
+}
+
+#command-input {
+    background: transparent;
+    border: none;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    outline: none;
+    flex: 1;
+    caret-color: #00ff00;
+}
+
+.output {
+    margin: 0;
+    color: #00ff00;
+}
+
+.error {
+    color: #ff4444;
+}
+
+.file {
+    color: #ffffff;
+}
+
+.dir {
+    color: #5555ff;
+    font-weight: bold;
+}
+
+.exec {
+    color: #55ff55;
+    font-weight: bold;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+}
