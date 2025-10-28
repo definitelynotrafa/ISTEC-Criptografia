@@ -55,12 +55,13 @@ Ainda tens dúvidas de quem eu sou?
 
 
 <details>
-<summary>Riddle 2</summary>
+<summary>Hint 1</summary>
 Have you ever used hashcat?
 </details>
 
 <details>
-<summary>Riddle 3</summary>
+<summary>Answer</summary>
+  
 ```hashcat -m 1400 -a 0 hashes.txt /path/to/wordlist.txt -o found.txt -w 3```
   > ```-m 1400 = SHA‑256 (raw)```
   > ```-a 0 = ataque por dicionário (dictionary attack)```
