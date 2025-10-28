@@ -44,7 +44,7 @@ Em cada passo há uma riddle que funciona como dica, podes clicar por cima da pa
 ## Passo 1:
 <details>
 <summary>Riddle</summary>
-*Transformo bytes em letras que se entendem,
+Transformo bytes em letras que se entendem,
 Uso 64 símbolos e às vezes deixo um = no final.
 Ainda tens dúvidas de quem eu sou?
 </details>
