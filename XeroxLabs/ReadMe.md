@@ -45,7 +45,9 @@ Em cada passo há uma riddle que funciona como dica, podes clicar por cima da pa
 <details>
 <summary>Riddle</summary>
 Transformo bytes em letras que se entendem,
+  
 Uso 64 símbolos e às vezes deixo um = no final.
+
 Ainda tens dúvidas de quem eu sou?
 </details>
 
@@ -55,7 +57,7 @@ Ainda tens dúvidas de quem eu sou?
 
 
 <details>
-<summary>Hint 1</summary>
+<summary>Hint</summary>
 Have you ever used hashcat?
 </details>
 
@@ -76,4 +78,22 @@ Have you ever used hashcat?
 
 - Se ainda não trocaste de utilizador com a password que encontraste, agora é a hora.
 - Explora a pasta deste novo utilizador, há ficheiros que apenas podes visualizar na tua máquina, usa o ```get [ficheiro]``` para o transferires para a tua máquina.
+- Verifica o ficheiro com o comando ```strings``` e ```xxd```. A que conclusões chegaste?
+- Com a informação que obtiveste, utiliza o cyberchef para desencriptar a string, cria uma receita para facilitar o processo.
 
+<details>
+<summary>Riddle</summary>
+Xerox mostra pixels, mas guarda papel.
+
+Troca a extensão e encontras a pass do Samuel.
+</details>
+
+<details>
+<summary>Hint</summary>
+From the lowest base to the highest!
+</details>
+
+<details>
+<summary>Answer</summary>
+Muda a extensão da imagem para pdf e verifica o conteúdo, depois desencripta com uma receita no cyberchef do base mais baixo para o mais alto.
+</details>
