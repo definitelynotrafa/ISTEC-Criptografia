@@ -1,6 +1,6 @@
 # SeedLab: CyberChef!
 
-**Resumo:** Este laboratório explica, passo a passo, como usar o CyberChef para decodificar/transformar dados (hex, base64, XOR, etc.), e como combinar ferramentas Linux (e *hash-identifier*) para analisar e identificar tipos de hash. O formato é um walkthrough: recebes artefatos, executas comandos no Linux e usas CyberChef para extrair informações.
+**Resumo:** Este laboratório explica, passo a passo, como usar o CyberChef para descriptografar dados e como combinar ferramentas Linux (e *hash-identifier*) para analisar e identificar tipos de hash. O formato é um walkthrough prático onde tens acesso a uma máquina online: recebes artefatos, executas comandos no Linux e usas CyberChef para extrair informações. O objetivo final é sempre escalar para root.
 
 ---
 
@@ -9,13 +9,13 @@
 1. Aprender os princípios básicos do CyberChef (receitas, encadeamento de operações, pré-visualização).
 2. Identificar formatos com ferramentas Linux (`file`, `xxd`, `hexdump`, `strings`) e confirmar com CyberChef.
 3. Usar `hash-identifier` para identificar tipos de hash e explorar opções de cracking/validação básicas.
-4. Integrar comandos Linux com CyberChef para construir um processo de análise forense com criptografia simples.
+4. Integrar comandos Linux com CyberChef para construir um processo de análise com criptografia simples.
 
 ---
 
 ## Pré-requisitos
 
-* Máquina Linux (ou WSL). Distribuições baseadas em Debian/Ubuntu são recomendadas se o utilizador não usar Linux regularmente.
+* Máquina Linux (ou WSL). Distribuições baseadas em Debian/Ubuntu são recomendadas se o utilizador não usar Linux regularmente. A máquina disponibilizada online não permite instalações.
 * CyberChef disponível (opções: usar a versão web oficial, ou instalar localmente via Docker / download do HTML). Recomenda-se dar download o HTML e abrir localmente para praticar.
 * Ferramentas: `hash-identifier`, `xxd`, `hexdump`, `file`, `strings`, `base64`, `openssl`, `md5sum`, `sha1sum`, `cut`, `tr`, `grep`.
 
@@ -30,13 +30,11 @@
 
 ---
 
-## Artefatos fornecidos (simulados neste walkthrough)
+## Artefatos fornecidos:
 
-Vais receber três ficheiros:
+> Neste fim de semana existiu uma pequena zeroday e um dos servidores da empresa Antixerox ficou vulnerável, tu, hacker mafarrico, tens o objetivo de tomar o controlo do servidor! Acede ao website para começar: -> https://antixeroxcryptolab.netlify.app/
 
-* `message.bin` — ficheiro com dados binários que contêm uma mensagem codificada.
-* `hash.txt` — um ficheiro com um hash.
-* `note.enc` — um ficheiro com conteúdo aparentemente codificado através de XOR/hex.
+
 
 > Nos passos abaixo eu indico comandos que executas localmente; forneço também as respostas/explicações para cada etapa para que o lab seja um walkthrough completo. Ao longo do texto existem pequenas questões para te orientar — tenta responder antes de olhar para a solução sugerida.
 
