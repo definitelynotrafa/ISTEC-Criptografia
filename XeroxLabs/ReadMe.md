@@ -47,7 +47,7 @@ Uso 64 símbolos e às vezes deixo um = no final.
 Ainda tens dúvidas de quem eu sou?
 </details>
 
-- Recon time! Identifica os ficheiros da pasta em que te econtras no momento, cuidado com os ocultos!
+- Recon time! Identifica os ficheiros da pasta em que te encontras no momento, cuidado com os ficheiros ocultos!
   
 > Encontraste alguma coisa? Se sim, sabes o que fazer. Descriptografa o conteúdo do que encontraste e passa para o próximo passo!
 
