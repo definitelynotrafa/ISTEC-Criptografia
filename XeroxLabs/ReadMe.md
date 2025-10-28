@@ -32,23 +32,12 @@
 
 ## Artefatos fornecidos:
 
-> Neste fim de semana existiu uma pequena zeroday e um dos servidores da empresa Antixerox ficou vulnerável, tu, hacker mafarrico, tens o objetivo de tomar o controlo do servidor! Acede ao website para começar: -> https://antixeroxcryptolab.netlify.app/
-
-
-
-> Nos passos abaixo eu indico comandos que executas localmente; forneço também as respostas/explicações para cada etapa para que o lab seja um walkthrough completo. Ao longo do texto existem pequenas questões para te orientar — tenta responder antes de olhar para a solução sugerida.
-
+> Neste fim de semana existiu uma pequena zeroday e um dos servidores da empresa Antixerox ficou vulnerável, tu, hacker mafarrico, tens o objetivo de tomar o controlo do servidor! Acede ao website para começar:
+> -> https://antixeroxcryptolab.netlify.app/
+> 
 ---
 
 ## Passo 1 — Inspeção inicial com ferramentas Linux
-
-1. Verificar o tipo de ficheiro:
-
-```bash
-file message.bin
-file note.enc
-file hash.txt
-```
 
 **Pergunta 1:** O que te diz a saída do `file`? É texto, binário, imagem, ou algo genérico ("data")? Anota a resposta.
 
