@@ -130,7 +130,7 @@ Usa o Hash-Identifier para confirmar que aquelas hashes afinal não eram um SHA,
 
 > ToddlerStomper:2bfbbe5800dd0874b39bd5a07952cf62 - esreveR - MD4
 
-> ze:f8e8eb9612969985e7df4657f8c49bddcbddf8c509bc82799eaa4d1fcaa1360b - SHA256 - **NOTA:** Esta password não deve tentar ser crackada, mas caso consigas fazê-lo, dás skip aos passos anteriores.
+> ze:f8e8eb9612969985e7df4657f8c49bddcbddf8c509bc82799eaa4d1fcaa1360b - SHA256 - esreveRnIgnillaF - **NOTA:** Esta password não deve tentar ser crackada, mas caso consigas fazê-lo, dás skip aos passos anteriores.
 
 Junta as passwords e troca de utilizador novamente.
   
