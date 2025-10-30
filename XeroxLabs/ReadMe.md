@@ -139,4 +139,25 @@ Junta as passwords e troca de utilizador novamente.
 
 ## Passo 4:
 
-- Parabéns, descobriste a password do Zé, explora o novo utilizador.
+- Parabéns, descobriste a password do Zé, explora o novo utilizador e descobre como saltar para o próximo.
+
+<details>
+<summary>Riddle</summary>
+Mete aqui uma riddle Rafa
+</details>
+
+<details>
+<summary>Hint</summary>
+Mete aqui uma hint Rafa
+</details>
+
+<details>
+<summary>Answer</summary>
+  
+Verifica o conteúdo da nota do Zé, vais encontrar uma hash em NTLM, volta a usar o hashcat para crackar a pass (código NTLM 1000) e entra na pasta que pedia uma password. 
+
+> db857fd3645b89250512f9e63af64995 - ROCKNROLL  
+
+Vê o vídeo e encontra a password do Rafa.
+
+</details>
