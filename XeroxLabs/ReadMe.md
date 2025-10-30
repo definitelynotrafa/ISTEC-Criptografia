@@ -158,6 +158,8 @@ Verifica o conteúdo da nota do Zé, vais encontrar uma hash em NTLM, volta a us
 
 > db857fd3645b89250512f9e63af64995 - ROCKNROLL  
 
+```get passdorafa.mp4```
+
 Vê o vídeo e encontra a password do Rafa.
 
 </details>
