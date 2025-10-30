@@ -128,7 +128,7 @@ Usa o Hash-Identifier para confirmar que aquelas hashes afinal não eram um SHA,
 
 > MegaDeth:c1db7f29e6b551f4fa48d6901eca6be6 - nI - MD2
 
-> :2bfbbe5800dd0874b39bd5a07952cf62 - esreveR - MD4
+> ToddlerStomper:2bfbbe5800dd0874b39bd5a07952cf62 - esreveR - MD4
 
 > ze:f8e8eb9612969985e7df4657f8c49bddcbddf8c509bc82799eaa4d1fcaa1360b - SHA256 - **NOTA:** Esta password não deve tentar ser crackada, mas caso consigas fazê-lo, dás skip aos passos anteriores.
 
