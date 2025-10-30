@@ -2,7 +2,7 @@
 
 Este laboratório explica, passo a passo, como usar o CyberChef para descriptografar dados e como combinar ferramentas Linux (e *hash-identifier*) para analisar e identificar tipos de hash. O formato é um walkthrough prático onde tens acesso a uma máquina online: recebes artefatos, executas comandos no Linux e usas CyberChef para extrair informações.
 
-O objetivo final é sempre escalar para root. 
+O objetivo final é escalar para root. 
 
 Em cada passo há uma riddle que funciona como dica, podes clicar por cima da palavra e usar se achares necessário.
 
@@ -136,3 +136,7 @@ Usa o Hash-Identifier para confirmar que aquelas hashes afinal não eram um SHA,
 Junta as passwords e troca de utilizador novamente.
   
 </details>
+
+## Passo 4:
+
+- Parabéns, descobriste a password do Zé, explora o novo utilizador.
