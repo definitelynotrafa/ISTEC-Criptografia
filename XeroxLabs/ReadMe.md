@@ -42,6 +42,11 @@ Em cada passo há uma riddle que funciona como dica, podes clicar por cima da pa
 ---
 
 ## Passo 1:
+
+- Recon time! Identifica os ficheiros da pasta em que te encontras no momento, cuidado com os ficheiros ocultos!
+  
+> Encontraste alguma coisa? Se sim, sabes o que fazer. Descriptografa o conteúdo do que encontraste e passa para o próximo passo!
+
 <details>
 <summary>Riddle</summary>
 Transformo bytes em letras que se entendem,
@@ -51,11 +56,6 @@ Uso 64 símbolos e às vezes deixo um = no final.
 Ainda tens dúvidas de quem eu sou?
 </details>
 
-- Recon time! Identifica os ficheiros da pasta em que te encontras no momento, cuidado com os ficheiros ocultos!
-  
-> Encontraste alguma coisa? Se sim, sabes o que fazer. Descriptografa o conteúdo do que encontraste e passa para o próximo passo!
-
-
 <details>
 <summary>Hint</summary>
 Have you ever used hashcat?
@@ -64,7 +64,7 @@ Have you ever used hashcat?
 <details>
 <summary>Answer</summary>
 
-Usa ```la -la``` para listar todos os ficheiros que estão na pasta em que logaste, incluíndo os ocultos. De seguida, cracka a hash com o hashcat.
+Usa ```ls -la``` para listar todos os ficheiros que estão na pasta em que logaste, incluíndo os ocultos. De seguida, cracka a hash com o hashcat.
   
 ```hashcat -m 1400 -a 0 hashes.txt /path/to/wordlist.txt -o found.txt -w 3```
 
@@ -97,8 +97,10 @@ Vamos da base mais baixa até à mais alta!
 
 <details>
 <summary>Answer</summary>
+  
 Muda de utilizador e verifica os ficheiros do utilizador novamente, é aconselhavel transferires este ficheiro png para a tua máquina com o comando ```get xerox.png```.
 De seguida, muda a extensão da imagem para pdf e verifica o conteúdo, depois desencripta com uma receita no cyberchef do base mais baixo para o mais alto.
+
 </details>
 
 ## Passo 3:
@@ -119,11 +121,16 @@ Experimenta usar Hash-Identifier
 <details>
 <summary>Answer</summary>
 Troca novamente de utilizador e verifica o conteúdo do mesmo.
-Usa o Hash-Identifier para confirmar que aquelas hashes afinal não eram um SHA, mas sim MD's. De seguida experimenta usar novamente o hashcat ou o [CrackStation](https://crackstation.net).
+Usa o Hash-Identifier para confirmar que aquelas hashes afinal não eram um SHA, mas sim MD's. De seguida experimenta usar novamente o hashcat ou o [CrackStation](https://crackstation.net).<p>&nbsp;</p>
+
 > Anthrax:7b61467a0e5084ff727ac81a79cfa3a1 - gnillaF - MD5
+
 > MegaDeth:c1db7f29e6b551f4fa48d6901eca6be6 - nI - MD2
+
 > :2bfbbe5800dd0874b39bd5a07952cf62 - esreveR - MD4
+
 > ze:f8e8eb9612969985e7df4657f8c49bddcbddf8c509bc82799eaa4d1fcaa1360b - SHA256 - **NOTA:** Esta password não deve tentar ser crackada, mas caso consigas fazê-lo, dás skip aos passos anteriores.
+
 Junta as passwords e troca de utilizador novamente.
   
 </details>
