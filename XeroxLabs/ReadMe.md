@@ -120,6 +120,7 @@ Experimenta usar Hash-Identifier
 
 <details>
 <summary>Answer</summary>
+  
 Troca novamente de utilizador e verifica o conteúdo do mesmo.
 Usa o Hash-Identifier para confirmar que aquelas hashes afinal não eram um SHA, mas sim MD's. De seguida experimenta usar novamente o hashcat ou o [CrackStation](https://crackstation.net).<p>&nbsp;</p>
 
