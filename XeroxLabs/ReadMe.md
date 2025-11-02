@@ -163,3 +163,13 @@ Verifica o conteúdo da nota do Zé, vais encontrar uma hash em NTLM, volta a us
 Vê o vídeo e encontra a password do Rafa.
 
 </details>
+
+
+## Passo 5:
+
+- Parece que esta foi fácil, não?
+
+
+## Passo 6:
+
+
