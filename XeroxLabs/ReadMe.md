@@ -186,6 +186,32 @@ Navega até à pasta /tmp e lê o conteúdo de um script em python. Vais encontr
 </details>
 
 
-## Passo 6:
+## Passo 6.1:
+
+- Há várias formas de alguém guardar uma key. Algumas formas mais tradicionais, outras mais modestas. Outras violam o RGPD.
+- Com o stress de ser pai, a memória do Rodrigo já não é o que era. Ele usa outros métodos para se recordar das suas keys.
+- Encontraste ficheiros peculiares dentro da pasta do Rodrigo, será algum deles importante? Ou só recordações irrelevantes?
+- Explora a pasta do Rodrigo, a partir daqui, talvez consigas chegar a root.
+
+<details>
+<summary>Answer</summary>
+
+6.1
+Verifica o conteúdo da pasta do Rodrigo, vais achar algumas fotos de jogos que ele usa para passar o tempo.
+Alguns detalhes das fotos são as chaves para a sua pasta pessoal. 
+
+> Key -
+
+</details>
 
 
+## Passo 6.2:
+
+- ola
+
+<details>
+<summary>Answer</summary>
+
+6.2
+Após descobrires as credenciais para desbloquear a pasta pessoal do Rodrigo encontraste...
+</details>
