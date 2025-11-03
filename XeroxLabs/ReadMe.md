@@ -170,6 +170,21 @@ Vê o vídeo e encontra a password do Rafa.
 - Parece que esta foi fácil, não?
 
 
+<details>
+<summary>Answer</summary>
+  
+Verifica o conteúdo da pasta do Rafa, vais encontrar uma nota, lê o conteúdo e percebes que eles estavam a desenvolver um código, porém a aplicação tem um sistema de logins e a password que o Rodrigo usa na app e no servidor são as mesmas. 
+No entanto, o código não foi guardado, pois o computador desligou abruptamente. Porém, ainda existe um backup guardado na cache do sistema. 
+Navega até à pasta /tmp e lê o conteúdo de um script em python. Vais encontrar a key, o IV e o modo e perceber que a encriptação usada foi blowfish. Pega na password do Rodrigo e desencripta.
+
+> Key - biboportosuperbock
+> IV - 1893189318931893
+> Mode - CBC
+> ce3235ccb154281220928928b7fc5294291eea1fc450a7782a17a31a52625f91 - Palmeirasnaotemmundial123!
+
+</details>
+
+
 ## Passo 6:
 
 
