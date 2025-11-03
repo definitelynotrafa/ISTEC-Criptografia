@@ -168,6 +168,7 @@ Vê o vídeo e encontra a password do Rafa.
 ## Passo 5:
 
 - Parece que esta foi fácil, não?
+- Lê o conteúdo da nota do Rafa e escala para o próximo utilizador.
 
 
 <details>
