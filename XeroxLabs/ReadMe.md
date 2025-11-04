@@ -214,9 +214,30 @@ Alguns detalhes das fotos são as chaves para a sua pasta pessoal.
 
 6.2
 - Após descobrires as credenciais para desbloquear a pasta pessoal do Rodrigo encontraste um ficheiro com uma pequena nota. 
-- A nota fala da rotação dourada, também conhecida como proporção áurea. Segue a imagem da sequencia de Fibonnaci (usa ```get fibonnaci.png```) encontrada na mesma pasta e aplica-a do maior para o menor com rot13 na pequena string que tem na nota.
-- Esta string da nota é uma password para uma pasta com uma imagem para o utilizador usar novamente ```get importante.png```. 
-- O utilizador deve verificar os metadados desta imagem para recuperar uma password para descompactar um ficheiro zip, de nome .nomedia. Neste caso, o ficheiro é importante. Possui um script que contem a única forma de estabelecer e recriar caminhos na máquina. Lê o script e segue o caminho. Aí estará as verdadeiras instruções para subires a root. 
+- A nota fala da rotação dourada, também conhecida como proporção áurea. Segue a imagem da sequencia de Fibonnaci (usa ```get fibonnaci.png```) encontrada na mesma pasta e aplica-a do maior para o menor com rot na pequena string que tem na nota.
+- Esta string da nota é uma password para uma pasta com uma imagem para o utilizador usar novamente ```get importante.png```.
+Receita cyberchef:
+```[
+  {"op":"ROT13","args":[true,true,false,987]},
+  {"op":"ROT13","args":[true,true,false,610]},
+  {"op":"ROT13","args":[true,true,false,377]},
+  {"op":"ROT13","args":[true,true,false,233]},
+  {"op":"ROT13","args":[true,true,false,144]},
+  {"op":"ROT13","args":[true,true,false,89]},
+  {"op":"ROT13","args":[true,true,false,55]},
+  {"op":"ROT13","args":[true,true,false,34]},
+  {"op":"ROT13","args":[true,true,false,21]},
+  {"op":"ROT13","args":[true,true,false,13]},
+  {"op":"ROT13","args":[true,true,false,8]},
+  {"op":"ROT13","args":[true,true,false,5]},
+  {"op":"ROT13","args":[true,true,false,3]},
+  {"op":"ROT13","args":[true,true,false,2]},
+  {"op":"ROT13","args":[true,true,false,1]},
+  {"op":"ROT13","args":[true,true,false,1]}
+]
+```
+
+- O utilizador deve verificar os metadados desta imagem para recuperar uma password para descompactar o ficheiro nomedia.zip. O ficheiro possui um script que contem a única forma de estabelecer e recriar caminhos na máquina. Executa e lê o script e segue o caminho que ele fez. Aí estará as verdadeiras instruções para subires a root. 
 
 
 </details>
