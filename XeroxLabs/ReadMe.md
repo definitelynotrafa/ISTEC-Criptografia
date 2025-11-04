@@ -165,6 +165,8 @@ Verifica o conteúdo da nota do Zé, vais encontrar uma hash em NTLM, volta a us
 
 Vê o vídeo e encontra a password do Rafa.
 
+> Password: 1337
+
 </details>
 
 
