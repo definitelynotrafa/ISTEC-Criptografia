@@ -111,6 +111,7 @@ De seguida, muda a extensão da imagem para pdf e verifica o conteúdo, depois d
 <details>
 <summary>Riddle</summary>
 Três métodos antigos guardam o Zé,
+  
 Quem souber o trio verá abrir‑se o céu.
 </details>
 
