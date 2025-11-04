@@ -145,6 +145,7 @@ Junta as passwords e troca de utilizador novamente.
 <details>
 <summary>Riddle</summary>
 No Windows esconde-se, password em hash fiel,  
+  
 Protege segredos num vídeo cru e cruel.
 </details>
 
@@ -175,7 +176,9 @@ Vê o vídeo e encontra a password do Rafa.
 
 <details>
 <summary>Riddle</summary>
-
+Numa pasta provisória do servidor jaz um ficheiro a apagar.  
+  
+As hashes sopram para o peixe. Rodrigo, corre e muda a password, vai lá já trocar!
 </details>
 
 
@@ -210,8 +213,10 @@ Navega até à pasta /tmp e lê o conteúdo de um script em python. Vais encontr
 
 <details>
 <summary>Riddle</summary>
-Numa pasta provisória do servidor jaz um ficheiro a apagar.  
-As hashes sopram para o peixe. Rodrigo, corre e muda a password, vai lá já trocar!
+Fotos dum jogo escondem uma semente guardada,
+  
+O Jimbo ri, lá está a chave bem guardada.
+
 </details>
 
 <details>
@@ -239,6 +244,7 @@ BALATRO
 <details>
 <summary>Riddle</summary>
 A rotação dourada gira com o que está guardado,  
+  
 Do maior ao menor, o segredo é revelado.
 </details>
 
@@ -315,6 +321,7 @@ ROT(x) está para ROT(fibonacci)
 <details>
 <summary>Riddle</summary>
 Publica à vista, privada só se pode usar,  
+  
 PGP guarda o segredo que só quem sabe vai decifrar.
 </details>
 
