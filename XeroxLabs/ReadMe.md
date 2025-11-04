@@ -1,4 +1,4 @@
-# SeedLab: AntiXerox!
+  # SeedLab: AntiXerox!
 
 Este laboratório explica, passo a passo, como usar o CyberChef para descriptografar dados e como combinar ferramentas Linux (e *hash-identifier*) para analisar e identificar tipos de hash. O formato é um walkthrough prático onde tens acesso a uma máquina online: recebes artefatos, executas comandos no Linux e usas CyberChef para extrair informações.
 
@@ -172,6 +172,17 @@ Vê o vídeo e encontra a password do Rafa.
 
 
 <details>
+<summary>Riddle</summary>
+
+</details>
+
+
+<details>
+<summary>Hint</summary>
+  
+</details>
+
+<details>
 <summary>Answer</summary>
   
 Verifica o conteúdo da pasta do Rafa, vais encontrar uma nota, lê o conteúdo e percebes que eles estavam a desenvolver um código, porém a aplicação tem um sistema de logins e a password que o Rodrigo usa na app e no servidor são as mesmas. 
@@ -193,6 +204,16 @@ Navega até à pasta /tmp e lê o conteúdo de um script em python. Vais encontr
 - Encontraste ficheiros peculiares dentro da pasta do Rodrigo, será algum deles importante? Ou só recordações irrelevantes?
 - Explora a pasta do Rodrigo, a partir daqui, talvez consigas chegar a root.
 
+
+
+<details>
+<summary>Riddle</summary>
+</details>
+
+<details>
+<summary>Hint</summary>
+</details>
+
 <details>
 <summary>Answer</summary>
 
@@ -208,6 +229,20 @@ Alguns detalhes das fotos são as chaves para a sua pasta pessoal.
 ## Passo 6.2:
 
 - ola
+
+<details>
+<summary>Riddle</summary>
+</details>
+
+
+<details>
+<summary>Hint</summary>
+</details>
+
+
+<details>
+<summary>Hint 2</summary>
+</details>
 
 <details>
 <summary>Answer</summary>
@@ -247,6 +282,16 @@ Receita cyberchef:
 
 
 ## Passo 6.3:
+
+
+<details>
+<summary>Riddle</summary>
+</details>
+
+
+<details>
+<summary>Hint</summary>
+</details>
 
 <details>
 <summary>Answer</summary>
