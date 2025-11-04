@@ -29,7 +29,7 @@ Em cada passo há uma riddle que funciona como dica, podes clicar por cima da pa
 > sudo apt update
 > sudo apt install -y python3-pip xxd bsdmainutils coreutils binutils file strings
 > pip3 install hash-identifier
-> # opcional: sudo apt install john hashcat
+> # opcional: sudo apt install hashcat
 > ```
 
 ---
