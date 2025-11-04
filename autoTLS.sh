@@ -190,7 +190,7 @@ Connection: close\r
         <div class="secure-badge">SSL/TLS Protected</div>
         
         <div class="footer">
-            © 2024 Bank32 Corporation. All rights reserved.
+            © 2025 Bank32 Corporation. All rights reserved.
         </div>
     </div>
 </body>
@@ -429,7 +429,7 @@ log "A limpar processos Python antigos..."
 docker exec "$SERVER_SERVICE_NAME" sh -c "pkill -9 python3 2>/dev/null || true"
 sleep 2
 
-log "Iniciando server.py..."
+log "A iniciar server.py..."
 docker exec -d "$SERVER_SERVICE_NAME" sh -c "cd /volumes && exec python3 -u server.py 2>&1 | tee /tmp/server.log"
 sleep 3
 
