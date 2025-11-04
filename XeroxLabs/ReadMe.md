@@ -213,10 +213,10 @@ Alguns detalhes das fotos são as chaves para a sua pasta pessoal.
 <summary>Answer</summary>
 
 6.2
-Após descobrires as credenciais para desbloquear a pasta pessoal do Rodrigo encontraste um ficheiro com uma pequena nota. 
-A nota fala da rotação dourada, também conhecida como proporção áurea. Segue a imagem da sequencia de Fibonnaci (usa ```get fibonnaci.png```) encontrada na mesma pasta e aplica-a do maior para o menor com rot13 na pequena string que tem na nota.
-Esta string da nota é uma password para uma pasta com uma imagem para o utilizador usar novamente ```get importante.png```. 
-O utilizador deve verificar os metadados desta imagem para recuperar uma password para descompactar um ficheiro zip, de nome .nomedia. Neste caso, o ficheiro é importante. Possui um script que contem a única forma de estabelecer e recriar caminhos na máquina. Lê o script e segue o caminho. Aí estará as verdadeiras instruções para subires a root. 
+- Após descobrires as credenciais para desbloquear a pasta pessoal do Rodrigo encontraste um ficheiro com uma pequena nota. 
+- A nota fala da rotação dourada, também conhecida como proporção áurea. Segue a imagem da sequencia de Fibonnaci (usa ```get fibonnaci.png```) encontrada na mesma pasta e aplica-a do maior para o menor com rot13 na pequena string que tem na nota.
+- Esta string da nota é uma password para uma pasta com uma imagem para o utilizador usar novamente ```get importante.png```. 
+- O utilizador deve verificar os metadados desta imagem para recuperar uma password para descompactar um ficheiro zip, de nome .nomedia. Neste caso, o ficheiro é importante. Possui um script que contem a única forma de estabelecer e recriar caminhos na máquina. Lê o script e segue o caminho. Aí estará as verdadeiras instruções para subires a root. 
 
 
 </details>
