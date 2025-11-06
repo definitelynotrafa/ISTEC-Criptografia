@@ -5,7 +5,9 @@ Este repositório tem como objetivo documentar todos os seedlabs feitos durante 
 ## Labs feitos:
 - PKI
 - TLS
-- BlockChain
+- Smart Contract Reentrancy Attack
+- Oracle Padding Attack
+- Pseudo Random Number Generator
 
 ---
 
