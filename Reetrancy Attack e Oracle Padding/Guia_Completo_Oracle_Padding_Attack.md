@@ -1,6 +1,5 @@
 # Laboratório de Ataque Padding Oracle
 
-**Data de Execução:** 2 de novembro de 2025
 
 Este laboratório foi baseado no Padding Oracle Attack Lab dos SEED Labs, com o intuito de proporcionar uma melhor compreensão de um ataque interessante em sistemas criptográficos.
 
@@ -606,3 +605,4 @@ Plaintext (ASCII): (^_^)(^_^) The SEED Labs are great! (^_^)(^_^)
 ```
 
 Como se pode ver, a mensagem final é `(^_^)(^_^) The SEED Labs are great! (^_^)(^_^)`.
+
