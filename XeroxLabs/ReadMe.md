@@ -73,6 +73,8 @@ Usa ```ls -la``` para listar todos os ficheiros que estão na pasta em que logas
   > ```-a 0 = ataque por dicionário (dictionary attack)```
 >
   > ```-w 3 = perfil de workload agressivo```
+
+Password: ```9ae3ebf2e993b0debfb5b87d9e22e404216f436f35757f8992a367d41f0cde32 - boilerplate```
 </details>
 
 
