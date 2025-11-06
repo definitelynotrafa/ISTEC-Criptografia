@@ -505,7 +505,7 @@ sudo tee /boot/EFI/BOOT/logs_root.txt > /dev/null << 'EOF'
 [05/06/2025 16:58] user:root; pass:RootMasterKey!; status:NOT FOUND
 [06/06/2025 13:12] user:root; pass:SystemAdmin@2024; status:NOT FOUND
 [07/06/2025 21:45] user:root; pass:ClassifiedRootPass; status:NOT FOUND
-[08/06/2025 03:59] user:root; pass:TerminalAccess2025; status:NOT FOUND
+[08/06/2025 06:49] user:root; pass:TerminalAccess2025; status:NOT FOUND
 EOF
 
 # Criar ficheiro mensagem em /tmp
@@ -2187,7 +2187,7 @@ if __name__ == "__main__":
         type: 'dir', 
         owner: 'samu',
         contents: {
-            'backup_script.py': {
+            'mano_vi_isto_ontem.py': {
         type: 'file',
         owner: 'samu',
         content: `# Backup do script de encriptação - recuperado da cache
@@ -2241,21 +2241,183 @@ if __name__ == "__main__":
     # Desencriptar a password
     result = decrypt_password(encrypted_password)
     print(f"Decrypted: {result}")`
-    }
-        }
     },
-    'var': {
-        type: 'dir',
-        owner: 'samu',
-        contents: {
-            'log': {
-                type: 'dir',
-                contents: {
-                    'auth.log': { type: 'file', content: 'Oct 28 10:15:23 classified-ops-srv01 login: User rodrigo logged in\nOct 28 10:20:45 classified-ops-srv01 login: User rafa logged in\nOct 28 10:25:12 classified-ops-srv01 su: Successful su for antixerox by rodrigo' }
-                }
+            'session_12345.tmp': {
+                type: 'file',
+                owner: 'root',
+                content: 'Temporary session data - expires in 24h\nUser: unknown\nTimestamp: 2025-11-06 14:23:45'
+            },
+            'cache_data_v2.dat': {
+                type: 'file',
+                owner: 'samu',
+                content: 'Binary cache data... not readable as text\n[BINARY DATA]\x00\x01\x02\xFF\xFE'
+            },
+            'system_diagnostics.log': {
+                type: 'file',
+                owner: 'root',
+                content: `[2025-11-06 10:15:32] System check started
+[2025-11-06 10:15:33] CPU usage: 45%
+[2025-11-06 10:15:33] Memory usage: 62%
+[2025-11-06 10:15:34] Disk usage: 78%
+[2025-11-06 10:15:35] Network: OK
+[2025-11-06 10:15:36] All systems operational`
+            },
+            'wget-log.1': {
+                type: 'file',
+                owner: 'rodrigo',
+                content: `--2025-11-05 16:42:13--  http://example.com/file.zip
+Resolving example.com... 93.184.216.34
+Connecting to example.com|93.184.216.34|:80... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2025-11-05 16:42:14 ERROR 404: Not Found.`
+            },
+            'process_dump_3721.core': {
+                type: 'file',
+                owner: 'root',
+                content: 'Core dump file - process crashed at 0x7fff82a4b000\nSegmentation fault\n[Binary core data]'
+            },
+            'temp_notes.txt': {
+                type: 'file',
+                owner: 'ze',
+                content: `Notas temporárias - apagar depois
+- Verificar logs do sistema
+- Atualizar packages
+- Fazer backup da base de dados
+- Rever configurações de firewall`
+            },
+            'install_log_2025.txt': {
+                type: 'file',
+                owner: 'root',
+                content: `Package Installation Log
+========================
+[2025-10-15] Installed: python3-pip (version 23.0.1)
+[2025-10-20] Installed: nginx (version 1.24.0)
+[2025-10-25] Installed: postgresql-15
+[2025-11-01] Installed: docker-ce (version 24.0.7)
+[2025-11-05] Updated: system packages (143 packages)`
+            },
+            'query_cache.sql': {
+                type: 'file',
+                owner: 'samu',
+                content: `-- Cached database queries
+SELECT * FROM users WHERE active = 1;
+SELECT COUNT(*) FROM sessions WHERE expired = 0;
+UPDATE stats SET views = views + 1 WHERE page_id = 42;
+DELETE FROM temp_data WHERE created < NOW() - INTERVAL 1 DAY;`
+            },
+            'network_scan_results.txt': {
+                type: 'file',
+                owner: 'antixerox',
+                content: `Network Scan Results - 2025-11-06
+==================================
+Host: 192.168.1.1 - OPEN ports: 22, 80, 443
+Host: 192.168.1.10 - OPEN ports: 22, 3306
+Host: 192.168.1.15 - OPEN ports: 22, 8080
+Host: 192.168.1.20 - OPEN ports: 22, 5432
+Total hosts scanned: 254
+Active hosts: 12`
+            },
+            'pip_cache_index.json': {
+                type: 'file',
+                owner: 'rodrigo',
+                content: `{
+  "packages": [
+    "numpy==1.24.3",
+    "pandas==2.0.2",
+    "requests==2.31.0",
+    "flask==2.3.2"
+  ],
+  "last_update": "2025-11-05T14:30:00Z"
+}`
+            },
+            'cron_output.log': {
+                type: 'file',
+                owner: 'root',
+                content: `[2025-11-06 00:00:01] Daily backup started
+[2025-11-06 00:15:32] Backup completed successfully
+[2025-11-06 06:00:01] System cleanup started
+[2025-11-06 06:05:14] Cleanup completed: 2.3GB freed`
+            },
+            'docker_build.log': {
+                type: 'file',
+                owner: 'davide',
+                content: `Building Docker image: webapp:latest
+Step 1/8 : FROM ubuntu:22.04
+Step 2/8 : RUN apt-get update && apt-get install -y python3
+Step 3/8 : COPY . /app
+Step 4/8 : WORKDIR /app
+Step 5/8 : RUN pip3 install -r requirements.txt
+Step 6/8 : EXPOSE 8080
+Step 7/8 : CMD ["python3", "app.py"]
+Successfully built 4a8f3c2b9d1e
+Successfully tagged webapp:latest`
+            },
+            'error_trace_5891.txt': {
+                type: 'file',
+                owner: 'rafa',
+                content: `Traceback (most recent call last):
+  File "/home/rafa/project/main.py", line 42, in <module>
+    result = process_data(input_file)
+  File "/home/rafa/project/utils.py", line 15, in process_data
+    data = json.load(f)
+JSONDecodeError: Expecting value: line 1 column 1 (char 0)`
+            },
+            'test_results.xml': {
+                type: 'file',
+                owner: 'davide',
+                content: `<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="45" failures="2" errors="0" time="12.345">
+  <testsuite name="Unit Tests" tests="30" failures="1" time="8.123">
+    <testcase name="test_login" time="0.234"/>
+    <testcase name="test_auth" time="0.456">
+      <failure>AssertionError: Expected True but got False</failure>
+    </testcase>
+  </testsuite>
+</testsuites>`
+            },
+            'ssh_host_keys.bak': {
+                type: 'file',
+                owner: 'root',
+                content: `# SSH Host Keys Backup - DO NOT DELETE
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC8...
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGx...
+ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlz...`
+            },
+            'package_update.list': {
+                type: 'file',
+                owner: 'root',
+                content: `Packages to update:
+- linux-image-generic (5.15.0-86 -> 5.15.0-91)
+- openssh-server (1:8.9p1-3 -> 1:8.9p1-4)
+- nginx-core (1.24.0-1 -> 1.24.0-2)
+- python3.10 (3.10.12-1 -> 3.10.13-1)
+Total: 23 packages`
+            },
+            'user_sessions.dat': {
+                type: 'file',
+                owner: 'root',
+                content: `Active user sessions:
+rodrigo: pts/0 - 10.0.2.15 - connected 2h 34m
+samu: pts/1 - 10.0.2.23 - connected 45m
+antixerox: pts/2 - localhost - connected 15m`
+            },
+            'memory_dump_partial.bin': {
+                type: 'file',
+                owner: 'root',
+                content: '[BINARY MEMORY DUMP - 128KB]\nPartial memory snapshot from process 8472\nWarning: Contains sensitive data'
+            },
+            'firewall_rules_backup.conf': {
+                type: 'file',
+                owner: 'root',
+                content: `# IPTables rules backup
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp --dport 443 -j ACCEPT
+-A INPUT -j DROP
+-A FORWARD -j DROP`
             }
         }
-    }
+}
 };
 
 let currentUser = 'antixerox';
@@ -2450,6 +2612,9 @@ function executeCommand(cmd) {
         case 'clear':
             cmdClear();
             break;
+        case 'get':
+            cmdGet(args);
+            break;
         case 'whoami':
             addOutput(currentUser);
             break;
@@ -2625,28 +2790,28 @@ function cmdGet(args) {
     const filename = args[0];
     
     const imageMap = {
-        'bal.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/bal.png',
-        'ck3.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/ck3.png',
-        'coh.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/coh.png',
-        'ff.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/ff.png',
-        'fl4.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/fl4.png',
-        'gow2.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/gow2.png',
-        'hk.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/hk.png',
-        'metro.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/metro.png',
-        'mm.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/mm.png',
-        'mtg.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/mtg.png',
-        'mtgs.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/mtgs.png',
-        'rdr2.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/rdr2.png',
-        'skrm.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/skrm.png',
-        'stm.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/stm.png',
-        'tlou.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/tlou.png',
-        'zmm.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/zmm.png',
+        'bal.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/bal.png',
+        'ck3.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/ck3.png',
+        'coh.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/coh.png',
+        'ff.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/ff.png',
+        'fl4.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/fl4.png',
+        'gow2.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/gow2.png',
+        'hk.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/hk.png',
+        'metro.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/metro.png',
+        'mm.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/mm.png',
+        'mtg.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/mtg.png',
+        'mtgs.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/mtgs.png',
+        'rdr2.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/rdr2.png',
+        'skrm.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/skrm.png',
+        'stm.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/stm.png',
+        'tlou.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/tlou.png',
+        'zmm.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/zmm.png',
         
-        'fibonacci.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/fibonacci.png',
-        'BALATRO.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/BALATRO.png',
+        'fibonacci.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/fibonacci.png',
+        'BALATRO.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/BALATRO.png',
         
-        'passdorafa.mp4': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/passdorafa.mp4',
-        'xerox.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/tree/main/XeroxLabs/website/assets/xerox.png'
+        'passdorafa.mp4': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/passdorafa.mp4',
+        'xerox.png': 'https://github.com/definitelynotrafa/ISTEC-Criptografia/blob/main/XeroxLabs/website/assets/xerox.png'
     };
 
     const targetPath = resolvePath(filename);
@@ -2666,6 +2831,7 @@ function cmdGet(args) {
         addOutput(`get: ${filename}: File type not supported for download or not available`, 'error');
         return;
     }
+
 
     const fileContent = node.content || '';
     if (!fileContent.toLowerCase().includes('get') && !fileContent.toLowerCase().includes('faz get')) {
@@ -2848,9 +3014,7 @@ function cmdExecuteScript(scriptName) {
     addOutput(`Script ${scriptName} executed successfully`);
 }
 
-// Função para criar diretórios
 function createDirectory(path) {
-    // Remover sudo do path se existir
     path = path.replace(/^sudo\s+/, '');
     
     const normalizedPath = normalizePath(path);
@@ -2859,7 +3023,6 @@ function createDirectory(path) {
     let current = fileSystem;
     let currentPath = '';
     
-    // Definir owners específicos para certos diretórios
     const specialDirOwners = {
         '/usr': 'rodrigo',
         '/usr/local': 'rodrigo',
@@ -2894,22 +3057,18 @@ function createDirectory(path) {
     saveState();
 }
 
-// Função para criar arquivos a partir de HERE documents
 function createFileFromHereDoc(filePath, content) {
-    // Remover sudo do path se existir
     filePath = filePath.replace(/^sudo\s+/, '');
     
     const normalizedPath = normalizePath(filePath);
     const parts = normalizedPath.split('/').filter(p => p);
     const fileName = parts.pop();
     const dirPath = '/' + parts.join('/');
-    
-    // Criar diretório pai se não existir
+
     if (parts.length > 0) {
         createDirectory(dirPath);
     }
-    
-    // Encontrar o diretório onde criar o arquivo
+
     let current = fileSystem;
     for (const part of parts) {
         if (current[part] && current[part].type === 'dir') {
@@ -2920,7 +3079,6 @@ function createFileFromHereDoc(filePath, content) {
         }
     }
     
-    // Definir owners específicos para certos paths
     const specialOwners = {
         '/tmp/mensagem': 'samu',
         '/usr/local/bin/public.key': 'rodrigo',
@@ -2929,7 +3087,6 @@ function createFileFromHereDoc(filePath, content) {
     
     const fileOwner = specialOwners[normalizedPath] || currentUser;
     
-    // Criar o arquivo
     current[fileName] = {
         type: 'file',
         owner: fileOwner,
@@ -2997,22 +3154,6 @@ function cmdCd(args) {
         return;
     }
 
-    // if (node.requiresPassword) {
-    //     const folderName = node.name;
-    //     const currentOutput = outputContainer.lastChild;
-    //     if (currentOutput && currentOutput.textContent.includes('cd ' + args[0])) {
-    //         currentOutput.textContent += `\nPasta protegida por senha: ${folderName}\nPassword: `;
-    //     } else {
-    //         addOutput(`Pasta protegida por senha: ${folderName}\nPassword: `);
-    //     }
-
-    //     awaitingPassword = true;
-    //     pendingUser = folderName;
-    //     input.type = 'password';
-    //     input.value = '';
-    //     input.focus();
-    //     return;
-    // }
 
     if (!canAccess(node)) {
         addOutput(`cd: ${args[0]}: Permission denied`, 'error');
@@ -3043,6 +3184,12 @@ function cmdPwd() {
 function cmdCat(args) {
     if (args.length === 0) {
         addOutput('cat: missing file operand', 'error');
+        return;
+    }
+
+    if (args[0].includes('chaves_pgp.sh')) {
+        addOutput('cat: chaves_pgp.sh: Access denied - use bash to execute this script', 'error');
+        addOutput('Usage: bash chaves_pgp.sh', 'info');
         return;
     }
 
@@ -3178,12 +3325,12 @@ function loadState() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    //loadState();
+    loadState();
     updatePrompt();
     input.focus();
 });
 
-//loadState();
+loadState();
 
 function cmdClear() {
     outputContainer.innerHTML = '';
@@ -3234,9 +3381,9 @@ document.addEventListener('click', () => {
     input.focus();
 });
 
-//updatePrompt();
+updatePrompt();
 
-// window.addEventListener('load', function() {
-//     loadState();
-//     updatePrompt();
-// });
+window.addEventListener('load', function() {
+    loadState();
+    updatePrompt();
+});
