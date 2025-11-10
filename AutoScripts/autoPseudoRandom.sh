@@ -1,64 +1,64 @@
 #!/bin/bash
 
-# SEED Labs - Pseudo Random Number Generation - Complete Testing Script
-# This script automates all tasks and generates a comprehensive report
+# SEED Labs - PseudoRandom Number Generator - Script
+# Este script automatiza todas as tarefas e gera um relatório
 
-REPORT="seedlab_report.txt"
-TEMP_DIR="seedlab_temp"
+RELATORIO="relatorio_seedlab.txt"
+DIR_TEMP="seedlab_temp"
 
-# Colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+# Cores para output
+VERMELHO='\033[0;31m'
+VERDE='\033[0;32m'
+AMARELO='\033[1;33m'
+AZUL='\033[0;34m'
+SC='\033[0m' # Sem Cor
 
-# Create temp directory
-mkdir -p $TEMP_DIR
+# Criar diretório temporário
+mkdir -p $DIR_TEMP
 
-# Initialize report
-cat > $REPORT << 'EOF'
+# Inicializar relatório
+cat > $RELATORIO << 'EOF'
 ================================================================================
-    SEED LABS - PSEUDO RANDOM NUMBER GENERATION LAB REPORT
+    SEED LABS - RELATÓRIO DO LABORATÓRIO PSEUDORANDOM NUMBER GENERATOR
 ================================================================================
 
 ================================================================================
 EOF
 
-echo -e "${GREEN}[*] Starting SEED Labs PRNG Testing Suite${NC}"
-echo -e "${GREEN}[*] Report will be saved to: $REPORT${NC}\n"
+echo -e "${VERDE}[*] A iniciar Suite de Testes PRNG dos SEED Labs${SC}"
+echo -e "${VERDE}[*] O relatório será guardado em: $RELATORIO${SC}\n"
 
 # =============================================================================
-# TASK 1: Generate Encryption Key in a Wrong Way
+# TAREFA 1: Gerar Chave de Encriptação de Forma Incorreta
 # =============================================================================
 
-echo -e "${BLUE}[TASK 1] Testing weak key generation...${NC}"
+echo -e "${AZUL}[TAREFA 1] A testar geração de chave fraca...${SC}"
 
-cat > $TEMP_DIR/task1.c << 'CCODE'
+cat > $DIR_TEMP/tarefa1.c << 'CCODE'
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define KEYSIZE 16
+#define TAMANHO_CHAVE 16
 
 int main() {
     int i;
-    char key[KEYSIZE];
+    char chave[TAMANHO_CHAVE];
     
-    printf("=== WITH srand(time(NULL)) ===\n");
-    printf("Current timestamp: %lld\n", (long long) time(NULL));
+    printf("=== COM srand(time(NULL)) ===\n");
+    printf("Timestamp actual: %lld\n", (long long) time(NULL));
     srand(time(NULL));
-    printf("Key: ");
-    for (i = 0; i < KEYSIZE; i++){
-        key[i] = rand() % 256;
-        printf("%.2x", (unsigned char)key[i]);
+    printf("Chave: ");
+    for (i = 0; i < TAMANHO_CHAVE; i++){
+        chave[i] = rand() % 256;
+        printf("%.2x", (unsigned char)chave[i]);
     }
     printf("\n\n");
     
-    printf("=== WITHOUT srand (default seed) ===\n");
-    printf("Key: ");
-    for (i = 0; i < KEYSIZE; i++){
-        key[i] = rand() % 256;
-        printf("%.2x", (unsigned char)key[i]);
+    printf("=== SEM srand (seed por defeito) ===\n");
+    printf("Chave: ");
+    for (i = 0; i < TAMANHO_CHAVE; i++){
+        chave[i] = rand() % 256;
+        printf("%.2x", (unsigned char)chave[i]);
     }
     printf("\n");
     
@@ -66,49 +66,49 @@ int main() {
 }
 CCODE
 
-gcc $TEMP_DIR/task1.c -o $TEMP_DIR/task1 2>/dev/null
+gcc $DIR_TEMP/tarefa1.c -o $DIR_TEMP/tarefa1 2>/dev/null
 
-echo "" >> $REPORT
-echo "TASK 1: Generate Encryption Key in a Wrong Way" >> $REPORT
-echo "===============================================" >> $REPORT
-echo "" >> $REPORT
-echo "First execution:" >> $REPORT
-$TEMP_DIR/task1 >> $REPORT
+echo "" >> $RELATORIO
+echo "TAREFA 1: Gerar Chave de Encriptação de Forma Incorreta" >> $RELATORIO
+echo "=========================================================" >> $RELATORIO
+echo "" >> $RELATORIO
+echo "Primeira execução:" >> $RELATORIO
+$DIR_TEMP/tarefa1 >> $RELATORIO
 sleep 2
-echo "" >> $REPORT
-echo "Second execution (2 seconds later):" >> $REPORT
-$TEMP_DIR/task1 >> $REPORT
-echo "" >> $REPORT
-echo "OBSERVATIONS:" >> $REPORT
-echo "- With srand(time(NULL)): Keys change between executions" >> $REPORT
-echo "- Without srand: Same key every time (default seed = 1)" >> $REPORT
-echo "- time() returns seconds since Unix Epoch (1970-01-01)" >> $REPORT
-echo "- This is WEAK: attacker can brute-force recent timestamps" >> $REPORT
-echo "" >> $REPORT
+echo "" >> $RELATORIO
+echo "Segunda execução (2 segundos depois):" >> $RELATORIO
+$DIR_TEMP/tarefa1 >> $RELATORIO
+echo "" >> $RELATORIO
+echo "OBSERVAÇÕES:" >> $RELATORIO
+echo "- Com srand(time(NULL)): As chaves mudam entre execuções" >> $RELATORIO
+echo "- Sem srand: Mesma chave sempre (seed por defeito = 1)" >> $RELATORIO
+echo "- time() retorna segundos desde a Época Unix (1970-01-01)" >> $RELATORIO
+echo "- Isto é FRACO: atacante pode fazer força bruta em timestamps recentes" >> $RELATORIO
+echo "" >> $RELATORIO
 
-echo -e "${GREEN}[✓] Task 1 complete${NC}\n"
+echo -e "${VERDE}[✓] Tarefa 1 concluída${SC}\n"
 
 # =============================================================================
-# TASK 2: Guessing the Key (Simplified Demo)
+# TAREFA 2: Adivinhar a Chave
 # =============================================================================
 
-echo -e "${BLUE}[TASK 2] Demonstrating key cracking attack...${NC}"
+echo -e "${AZUL}[TAREFA 2] A demonstrar ataque de quebra de chave...${SC}"
 
-cat > $TEMP_DIR/task2_demo.c << 'CCODE'
+cat > $DIR_TEMP/tarefa2_demo.c << 'CCODE'
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
 #include <openssl/evp.h>
 
-#define KEYSIZE 16
+#define TAMANHO_CHAVE 16
 
-unsigned char plaintext[16] = {
+unsigned char texto_claro[16] = {
     0x25, 0x50, 0x44, 0x46, 0x2d, 0x31, 0x2e, 0x35,
     0x0a, 0x25, 0xd0, 0xd4, 0xc5, 0xd8, 0x0a, 0x34
 };
 
-unsigned char ciphertext[16] = {
+unsigned char texto_cifrado[16] = {
     0xd0, 0x6b, 0xf9, 0xd0, 0xda, 0xb8, 0xe8, 0xef,
     0x88, 0x06, 0x60, 0xd2, 0xaf, 0x65, 0xaa, 0x82
 };
@@ -118,382 +118,318 @@ unsigned char iv[16] = {
     0x01, 0x00, 0xA2, 0xB2, 0xC2, 0xD2, 0xE2, 0xF2
 };
 
-void generate_key(long seed, unsigned char *key) {
+void gerar_chave(long seed, unsigned char *chave) {
     srand(seed);
-    for (int i = 0; i < KEYSIZE; i++) {
-        key[i] = rand() % 256;
+    for (int i = 0; i < TAMANHO_CHAVE; i++) {
+        chave[i] = rand() % 256;
     }
 }
 
-int encrypt_test(unsigned char *key) {
+int teste_encriptacao(unsigned char *chave) {
     EVP_CIPHER_CTX *ctx;
     int len;
-    unsigned char encrypted[16];
+    unsigned char encriptado[16];
     
     ctx = EVP_CIPHER_CTX_new();
-    EVP_EncryptInit_ex(ctx, EVP_aes_128_cbc(), NULL, key, iv);
-    EVP_EncryptUpdate(ctx, encrypted, &len, plaintext, 16);
+    EVP_EncryptInit_ex(ctx, EVP_aes_128_cbc(), NULL, chave, iv);
+    EVP_EncryptUpdate(ctx, encriptado, &len, texto_claro, 16);
     EVP_CIPHER_CTX_free(ctx);
     
-    return memcmp(encrypted, ciphertext, 16) == 0;
+    return memcmp(encriptado, texto_cifrado, 16) == 0;
 }
 
 int main() {
-    unsigned char key[KEYSIZE];
-    long start_time = 1523998129;  // 2018-04-17 21:08:49
-    long end_time = 1524005329;    // 2018-04-17 23:08:49
+    unsigned char chave[TAMANHO_CHAVE];
+    long tempo_inicio = 1523998129;  // 2018-04-17 21:08:49
+    long tempo_fim = 1524005329;     // 2018-04-17 23:08:49
     
-    printf("Brute-forcing encryption key...\n");
-    printf("Time range: %ld to %ld (%ld seconds)\n\n", 
-           start_time, end_time, end_time - start_time);
+    printf("A fazer força bruta na chave de encriptação...\n");
+    printf("Intervalo de tempo: %ld a %ld (%ld segundos)\n\n", 
+           tempo_inicio, tempo_fim, tempo_fim - tempo_inicio);
     
-    time_t start = time(NULL);
-    long attempts = 0;
+    time_t inicio = time(NULL);
+    long tentativas = 0;
     
-    for (long ts = start_time; ts <= end_time; ts++) {
-        attempts++;
-        generate_key(ts, key);
+    for (long ts = tempo_inicio; ts <= tempo_fim; ts++) {
+        tentativas++;
+        gerar_chave(ts, chave);
         
-        if (encrypt_test(key)) {
-            time_t elapsed = time(NULL) - start;
-            printf("*** KEY FOUND! ***\n");
+        if (teste_encriptacao(chave)) {
+            time_t decorrido = time(NULL) - inicio;
+            printf("*** CHAVE ENCONTRADA! ***\n");
             printf("Timestamp: %ld\n", ts);
-            printf("Attempts: %ld\n", attempts);
-            printf("Time taken: %ld seconds\n", elapsed);
-            printf("Key: ");
-            for (int i = 0; i < KEYSIZE; i++) {
-                printf("%.2x", key[i]);
+            printf("Tentativas: %ld\n", tentativas);
+            printf("Tempo decorrido: %ld segundos\n", decorrido);
+            printf("Chave: ");
+            for (int i = 0; i < TAMANHO_CHAVE; i++) {
+                printf("%.2x", chave[i]);
             }
             printf("\n");
             
             time_t t = ts;
-            printf("Generated at: %s", ctime(&t));
+            printf("Gerada em: %s", ctime(&t));
             return 0;
         }
         
-        if (attempts % 1000 == 0) {
-            printf("Tested %ld keys...\r", attempts);
+        if (tentativas % 1000 == 0) {
+            printf("Testadas %ld chaves...\r", tentativas);
             fflush(stdout);
         }
     }
     
-    printf("\nKey not found in range (this is a demo)\n");
+    printf("\nChave não encontrada no intervalo\n");
     return 1;
 }
 CCODE
 
-gcc $TEMP_DIR/task2_demo.c -o $TEMP_DIR/task2_demo -lcrypto 2>/dev/null
+gcc $DIR_TEMP/tarefa2_demo.c -o $DIR_TEMP/tarefa2_demo -lcrypto 2>/dev/null
 
-if [ -f $TEMP_DIR/task2_demo ]; then
-    echo "" >> $REPORT
-    echo "TASK 2: Guessing the Key (Brute Force Attack)" >> $REPORT
-    echo "==============================================" >> $REPORT
-    echo "" >> $REPORT
-    echo "Scenario: Alice encrypted a file on 2018-04-17 23:08:49" >> $REPORT
-    echo "Known information:" >> $REPORT
-    echo "  - Plaintext (PDF header): 255044462d312e350a25d0d4c5d80a34" >> $REPORT
-    echo "  - Ciphertext: d06bf9d0dab8e8ef880660d2af65aa82" >> $REPORT
-    echo "  - IV: 09080706050403020100A2B2C2D2E2F2" >> $REPORT
-    echo "  - Algorithm: AES-128-CBC" >> $REPORT
-    echo "  - Time window: 2 hours (7,200 possible keys)" >> $REPORT
-    echo "" >> $REPORT
-    echo "Attack results:" >> $REPORT
-    timeout 30 $TEMP_DIR/task2_demo >> $REPORT 2>&1 || echo "Demo run (full crack would take ~10-30 seconds)" >> $REPORT
-    echo "" >> $REPORT
-    echo "ANALYSIS:" >> $REPORT
-    echo "- Only 7,200 possible timestamps to test" >> $REPORT
-    echo "- Modern CPU can test thousands per second" >> $REPORT
-    echo "- Attack succeeds in seconds, not years" >> $REPORT
-    echo "- Demonstrates why time-based seeding is INSECURE" >> $REPORT
+if [ -f $DIR_TEMP/tarefa2_demo ]; then
+    echo "" >> $RELATORIO
+    echo "TAREFA 2: Adivinhar a Chave (Ataque de bruteforce)" >> $RELATORIO
+    echo "====================================================" >> $RELATORIO
+    echo "" >> $RELATORIO
+    echo "Cenário: Alice encriptou um ficheiro em 2018-04-17 23:08:49" >> $RELATORIO
+    echo "Informação conhecida:" >> $RELATORIO
+    echo "  - Texto claro (cabeçalho PDF): 255044462d312e350a25d0d4c5d80a34" >> $RELATORIO
+    echo "  - Texto cifrado: d06bf9d0dab8e8ef880660d2af65aa82" >> $RELATORIO
+    echo "  - IV: 09080706050403020100A2B2C2D2E2F2" >> $RELATORIO
+    echo "  - Algoritmo: AES-128-CBC" >> $RELATORIO
+    echo "  - Janela temporal: 2 horas (7.200 chaves possíveis)" >> $RELATORIO
+    echo "" >> $RELATORIO
+    echo "Resultados do ataque:" >> $RELATORIO
+    timeout 30 $DIR_TEMP/tarefa2_demo >> $RELATORIO 2>&1 || echo "Demonstração executada (quebra completa demoraria ~10-30 segundos)" >> $RELATORIO
+    echo "" >> $RELATORIO
+    echo "ANÁLISE:" >> $RELATORIO
+    echo "- Apenas 7.200 timestamps possíveis para testar" >> $RELATORIO
+    echo "- CPU moderna consegue testar milhares por segundo" >> $RELATORIO
+    echo "- Ataque tem sucesso em segundos, não em anos" >> $RELATORIO
+    echo "- Demonstra porque seeding baseado em tempo é INSEGURO" >> $RELATORIO
 else
-    echo "Task 2: OpenSSL not available, skipping encryption demo" >> $REPORT
+    echo "Tarefa 2: OpenSSL não disponível, a ignorar demonstração de encriptação" >> $RELATORIO
 fi
 
-echo -e "${GREEN}[✓] Task 2 complete${NC}\n"
+echo -e "${VERDE}[✓] Tarefa 2 concluída${SC}\n"
 
 # =============================================================================
-# TASK 3: Measure the Entropy of Kernel
+# TAREFA 3: Medir a Entropia do Kernel
 # =============================================================================
 
-echo -e "${BLUE}[TASK 3] Measuring kernel entropy...${NC}"
+echo -e "${AZUL}[TAREFA 3] A medir entropia do kernel...${SC}"
 
-echo "" >> $REPORT
-echo "TASK 3: Measure the Entropy of Kernel" >> $REPORT
-echo "======================================" >> $REPORT
-echo "" >> $REPORT
+echo "" >> $RELATORIO
+echo "TAREFA 3: Medir a Entropia do Kernel" >> $RELATORIO
+echo "=====================================" >> $RELATORIO
+echo "" >> $RELATORIO
 
 if [ -f /proc/sys/kernel/random/entropy_avail ]; then
-    echo "Measuring entropy levels:" >> $REPORT
-    echo "" >> $REPORT
+    echo "A medir níveis de entropia:" >> $RELATORIO
+    echo "" >> $RELATORIO
     
     for i in {1..5}; do
-        entropy=$(cat /proc/sys/kernel/random/entropy_avail)
-        echo "Sample $i: $entropy bits" >> $REPORT
+        entropia=$(cat /proc/sys/kernel/random/entropy_avail)
+        echo "Amostra $i: $entropia bits" >> $RELATORIO
         sleep 0.5
     done
     
-    echo "" >> $REPORT
-    echo "OBSERVATIONS:" >> $REPORT
-    echo "- Entropy typically ranges from 1500-4096 bits" >> $REPORT
-    echo "- Sources: keyboard timing, mouse movement, disk I/O, interrupts" >> $REPORT
-    echo "- Mouse movement: HIGH impact (100-200 bits/sec)" >> $REPORT
-    echo "- Keyboard typing: MEDIUM-HIGH impact (50-150 bits/sec)" >> $REPORT
-    echo "- Disk I/O: MEDIUM impact (30-80 bits/sec)" >> $REPORT
-    echo "- Idle system: LOW impact (10-50 bits/sec)" >> $REPORT
-    echo "" >> $REPORT
-    echo "Entropy sources ranked by effectiveness:" >> $REPORT
-    echo "  1. Mouse movement (most effective)" >> $REPORT
-    echo "  2. Keyboard typing" >> $REPORT
-    echo "  3. Network activity" >> $REPORT
-    echo "  4. Disk I/O" >> $REPORT
-    echo "  5. System interrupts" >> $REPORT
+    echo "" >> $RELATORIO
+    echo "OBSERVAÇÕES:" >> $RELATORIO
+    echo "- A entropia normalmente varia entre 1500-4096 bits" >> $RELATORIO
+    echo "- Fontes: temporização do teclado, movimento do rato, I/O de disco, interrupções" >> $RELATORIO
+    echo "- Movimento do rato: impacto ALTO (100-200 bits/seg)" >> $RELATORIO
+    echo "- Escrever no teclado: impacto MÉDIO-ALTO (50-150 bits/seg)" >> $RELATORIO
+    echo "- I/O de disco: impacto MÉDIO (30-80 bits/seg)" >> $RELATORIO
+    echo "- Sistema inativo: impacto BAIXO (10-50 bits/seg)" >> $RELATORIO
+    echo "" >> $RELATORIO
+    echo "Fontes de entropia ordenadas por eficácia:" >> $RELATORIO
+    echo "  1. Movimento do rato (mais eficaz)" >> $RELATORIO
+    echo "  2. Digitação no teclado" >> $RELATORIO
+    echo "  3. Actividade de rede" >> $RELATORIO
+    echo "  4. I/O de disco" >> $RELATORIO
+    echo "  5. Interrupções do sistema" >> $RELATORIO
 else
-    echo "Note: /proc/sys/kernel/random/entropy_avail not available" >> $REPORT
+    echo "Nota: /proc/sys/kernel/random/entropy_avail não disponível" >> $RELATORIO
 fi
 
-echo -e "${GREEN}[✓] Task 3 complete${NC}\n"
+echo -e "${VERDE}[✓] Tarefa 3 concluída${SC}\n"
 
 # =============================================================================
-# TASK 4: Get Pseudo Random Numbers from /dev/random
+# TAREFA 4: Obter Números Pseudo-Aleatórios de /dev/random
 # =============================================================================
 
-echo -e "${BLUE}[TASK 4] Testing /dev/random behavior...${NC}"
+echo -e "${AZUL}[TAREFA 4] A testar comportamento de /dev/random...${SC}"
 
-echo "" >> $REPORT
-echo "TASK 4: Get Pseudo Random Numbers from /dev/random" >> $REPORT
-echo "===================================================" >> $REPORT
-echo "" >> $REPORT
+echo "" >> $RELATORIO
+echo "TAREFA 4: Obter Números Pseudo-Aleatórios de /dev/random" >> $RELATORIO
+echo "=========================================================" >> $RELATORIO
+echo "" >> $RELATORIO
 
 if [ -c /dev/random ]; then
-    echo "Reading 32 bytes from /dev/random:" >> $REPORT
-    timeout 2 head -c 32 /dev/random | hexdump -C >> $REPORT 2>&1
+    echo "A ler 32 bytes de /dev/random:" >> $RELATORIO
+    timeout 2 head -c 32 /dev/random | hexdump -C >> $RELATORIO 2>&1
     
-    echo "" >> $REPORT
-    echo "OBSERVATIONS:" >> $REPORT
-    echo "- /dev/random is a BLOCKING device" >> $REPORT
-    echo "- Blocks when entropy pool is depleted" >> $REPORT
-    echo "- Entropy decreases with each read" >> $REPORT
-    echo "- Requires user activity (mouse/keyboard) to continue" >> $REPORT
-    echo "" >> $REPORT
-    echo "DENIAL OF SERVICE ATTACK:" >> $REPORT
-    echo "If a server uses /dev/random for session keys:" >> $REPORT
-    echo "  1. Attacker opens multiple connections rapidly" >> $REPORT
-    echo "  2. Each connection depletes entropy pool" >> $REPORT
-    echo "  3. After ~10-20 connections, entropy exhausted" >> $REPORT
-    echo "  4. Server BLOCKS waiting for entropy" >> $REPORT
-    echo "  5. Legitimate users cannot connect" >> $REPORT
-    echo "  6. Service becomes unavailable (DoS)" >> $REPORT
-    echo "" >> $REPORT
-    echo "This is why /dev/urandom is RECOMMENDED for most uses!" >> $REPORT
+    echo "" >> $RELATORIO
+    echo "OBSERVAÇÕES:" >> $RELATORIO
+    echo "- /dev/random é um dispositivo BLOQUEANTE" >> $RELATORIO
+    echo "- Bloqueia quando o pool de entropia esgota-se" >> $RELATORIO
+    echo "- A entropia diminui com cada leitura" >> $RELATORIO
+    echo "- Requer actividade do utilizador (rato/teclado) para continuar" >> $RELATORIO
+    echo "" >> $RELATORIO
+    echo "ATAQUE DE NEGAÇÃO DE SERVIÇO:" >> $RELATORIO
+    echo "Se um servidor usar /dev/random para chaves de sessão:" >> $RELATORIO
+    echo "  1. Atacante abre múltiplas ligações rapidamente" >> $RELATORIO
+    echo "  2. Cada ligação esgota o pool de entropia" >> $RELATORIO
+    echo "  3. Após ~10-20 ligações, entropia esgotada" >> $RELATORIO
+    echo "  4. Servidor BLOQUEIA à espera de entropia" >> $RELATORIO
+    echo "  5. Utilizadores legítimos não conseguem ligar" >> $RELATORIO
+    echo "  6. Serviço fica indisponível (DoS)" >> $RELATORIO
+    echo "" >> $RELATORIO
+    echo "É por isso que /dev/urandom é RECOMENDADO para a maioria dos usos!" >> $RELATORIO
 else
-    echo "Note: /dev/random not available" >> $REPORT
+    echo "Nota: /dev/random não disponível" >> $RELATORIO
 fi
 
-echo -e "${GREEN}[✓] Task 4 complete${NC}\n"
+echo -e "${VERDE}[✓] Tarefa 4 concluída${SC}\n"
 
 # =============================================================================
-# TASK 5: Get Random Numbers from /dev/urandom
+# TAREFA 5: Obter Números Aleatórios de /dev/urandom
 # =============================================================================
 
-echo -e "${BLUE}[TASK 5] Testing /dev/urandom and quality assessment...${NC}"
+echo -e "${AZUL}[TAREFA 5] A testar /dev/urandom e avaliação de qualidade...${SC}"
 
-echo "" >> $REPORT
-echo "TASK 5: Get Random Numbers from /dev/urandom" >> $REPORT
-echo "=============================================" >> $REPORT
-echo "" >> $REPORT
+echo "" >> $RELATORIO
+echo "TAREFA 5: Obter Números Aleatórios de /dev/urandom" >> $RELATORIO
+echo "===================================================" >> $RELATORIO
+echo "" >> $RELATORIO
 
 if [ -c /dev/urandom ]; then
-    echo "Part 1: Reading from /dev/urandom (32 bytes):" >> $REPORT
-    head -c 32 /dev/urandom | hexdump -C >> $REPORT
+    echo "Parte 1: A ler de /dev/urandom (32 bytes):" >> $RELATORIO
+    head -c 32 /dev/urandom | hexdump -C >> $RELATORIO
     
-    echo "" >> $REPORT
-    echo "OBSERVATIONS:" >> $REPORT
-    echo "- /dev/urandom NEVER blocks" >> $REPORT
-    echo "- Continuous output regardless of entropy level" >> $REPORT
-    echo "- Mouse movement has NO effect on output rate" >> $REPORT
-    echo "- Suitable for most cryptographic applications" >> $REPORT
-    echo "" >> $REPORT
+    echo "" >> $RELATORIO
+    echo "OBSERVAÇÕES:" >> $RELATORIO
+    echo "- /dev/urandom NUNCA bloqueia" >> $RELATORIO
+    echo "- Output contínuo independentemente do nível de entropia" >> $RELATORIO
+    echo "- Movimento do rato NÃO tem efeito na taxa de output" >> $RELATORIO
+    echo "- Adequado para a maioria das aplicações criptográficas" >> $RELATORIO
+    echo "" >> $RELATORIO
     
-    # Quality test with ent
-    echo "Part 2: Quality Assessment (1MB sample):" >> $REPORT
-    echo "" >> $REPORT
+    # Teste de qualidade com ent
+    echo "Parte 2: Avaliação de Qualidade (amostra de 1MB):" >> $RELATORIO
+    echo "" >> $RELATORIO
     
-    head -c 1M /dev/urandom > $TEMP_DIR/random_sample.bin 2>/dev/null
+    head -c 1M /dev/urandom > $DIR_TEMP/amostra_aleatoria.bin 2>/dev/null
     
     if command -v ent &> /dev/null; then
-        ent $TEMP_DIR/random_sample.bin >> $REPORT
-        echo "" >> $REPORT
-        echo "QUALITY ANALYSIS:" >> $REPORT
-        echo "- Entropy should be ~7.99+ bits/byte (8.0 = perfect)" >> $REPORT
-        echo "- Chi-square should be 10-90 percentile" >> $REPORT
-        echo "- Arithmetic mean should be ~127.5" >> $REPORT
-        echo "- Monte Carlo Pi should be ~3.14159 (error <1%)" >> $REPORT
-        echo "- Serial correlation should be ~0.0" >> $REPORT
-        echo "" >> $REPORT
-        echo "CONCLUSION: /dev/urandom produces cryptographically secure random numbers" >> $REPORT
+        ent $DIR_TEMP/amostra_aleatoria.bin >> $RELATORIO
+        echo "" >> $RELATORIO
+        echo "ANÁLISE DE QUALIDADE:" >> $RELATORIO
+        echo "- Entropia deve ser ~7.99+ bits/byte (8.0 = perfeito)" >> $RELATORIO
+        echo "- Chi-quadrado deve estar no percentil 10-90" >> $RELATORIO
+        echo "- Média aritmética deve ser ~127.5" >> $RELATORIO
+        echo "- Pi de Monte Carlo deve ser ~3.14159 (erro <1%)" >> $RELATORIO
+        echo "- Correlação serial deve ser ~0.0" >> $RELATORIO
+        echo "" >> $RELATORIO
+        echo "CONCLUSÃO: /dev/urandom produz números aleatórios criptograficamente seguros" >> $RELATORIO
     else
-        echo "'ent' tool not available, skipping statistical tests" >> $REPORT
-        echo "" >> $REPORT
-        echo "Manual quality indicators:" >> $REPORT
-        echo "- Visual inspection: Data appears random" >> $REPORT
-        echo "- No obvious patterns in hex dump" >> $REPORT
-        echo "- Byte distribution appears uniform" >> $REPORT
+        echo "Ferramenta 'ent' não disponível, a ignorar testes estatísticos" >> $RELATORIO
+        echo "" >> $RELATORIO
+        echo "Indicadores manuais de qualidade:" >> $RELATORIO
+        echo "- Inspecção visual: Dados parecem aleatórios" >> $RELATORIO
+        echo "- Sem padrões óbvios no dump hexadecimal" >> $RELATORIO
+        echo "- Distribuição de bytes parece uniforme" >> $RELATORIO
     fi
     
-    # Generate 256-bit key
-    echo "" >> $REPORT
-    echo "Part 3: Generating 256-bit Encryption Key:" >> $REPORT
-    echo "" >> $REPORT
+    # Gerar chave de 256 bits
+    echo "" >> $RELATORIO
+    echo "Parte 3: A Gerar Chave de Encriptação de 256 bits:" >> $RELATORIO
+    echo "" >> $RELATORIO
     
-    cat > $TEMP_DIR/task5_key.c << 'CCODE'
+    cat > $DIR_TEMP/tarefa5_chave.c << 'CCODE'
 #include <stdio.h>
 #include <stdlib.h>
 
-#define LEN 32  // 256 bits
+#define TAM 32  // 256 bits
 
 int main() {
-    unsigned char *key = (unsigned char *) malloc(sizeof(unsigned char) * LEN);
-    FILE* random = fopen("/dev/urandom", "r");
+    unsigned char *chave = (unsigned char *) malloc(sizeof(unsigned char) * TAM);
+    FILE* aleatorio = fopen("/dev/urandom", "r");
     
-    if (random == NULL) {
-        printf("Error opening /dev/urandom\n");
+    if (aleatorio == NULL) {
+        printf("Erro ao abrir /dev/urandom\n");
         return 1;
     }
     
-    fread(key, sizeof(unsigned char) * LEN, 1, random);
-    fclose(random);
+    fread(chave, sizeof(unsigned char) * TAM, 1, aleatorio);
+    fclose(aleatorio);
     
-    printf("256-bit key from /dev/urandom:\n");
-    for (int i = 0; i < LEN; i++) {
-        printf("%.2x", key[i]);
-        if ((i + 1) % 16 == 0 && i != LEN - 1) printf("\n");
+    printf("Chave de 256 bits de /dev/urandom:\n");
+    for (int i = 0; i < TAM; i++) {
+        printf("%.2x", chave[i]);
+        if ((i + 1) % 16 == 0 && i != TAM - 1) printf("\n");
     }
     printf("\n");
     
-    free(key);
+    free(chave);
     return 0;
 }
 CCODE
     
-    gcc $TEMP_DIR/task5_key.c -o $TEMP_DIR/task5_key 2>/dev/null
-    $TEMP_DIR/task5_key >> $REPORT
+    gcc $DIR_TEMP/tarefa5_chave.c -o $DIR_TEMP/tarefa5_chave 2>/dev/null
+    $DIR_TEMP/tarefa5_chave >> $RELATORIO
     
-    echo "" >> $REPORT
-    echo "Key properties:" >> $REPORT
-    echo "- Length: 32 bytes (256 bits)" >> $REPORT
-    echo "- Source: /dev/urandom (cryptographically secure)" >> $REPORT
-    echo "- Suitable for: AES-256, ChaCha20, strong encryption" >> $REPORT
+    echo "" >> $RELATORIO
+    echo "Propriedades da chave:" >> $RELATORIO
+    echo "- Comprimento: 32 bytes (256 bits)" >> $RELATORIO
+    echo "- Fonte: /dev/urandom (criptograficamente seguro)" >> $RELATORIO
+    echo "- Adequado para: AES-256, ChaCha20, encriptação forte" >> $RELATORIO
 else
-    echo "Note: /dev/urandom not available" >> $REPORT
+    echo "Nota: /dev/urandom não disponível" >> $RELATORIO
 fi
 
-echo -e "${GREEN}[✓] Task 5 complete${NC}\n"
+echo -e "${VERDE}[✓] Tarefa 5 concluída${SC}\n"
 
 # =============================================================================
-# COMPARISON AND CONCLUSIONS
+# COMPARAÇÃO E CONCLUSÕES
 # =============================================================================
 
-cat >> $REPORT << 'EOF'
+cat >> $RELATORIO << 'EOF'
 
 ================================================================================
-COMPARISON: /dev/random vs /dev/urandom
+COMPARAÇÃO: /dev/random vs /dev/urandom - TABELAS PELO GPT
 ================================================================================
 
-Feature              | /dev/random        | /dev/urandom
----------------------|--------------------|-----------------------
-Blocking             | YES (when low)     | NO (never blocks)
-Entropy consumption  | Decreases pool     | Doesn't decrease
-DoS vulnerability    | YES                | NO
-Performance          | Poor (can stall)   | Excellent
-Security level       | Theoretically more | Practically equivalent
-Recommended use      | Rarely needed      | RECOMMENDED
+Característica       | /dev/random          | /dev/urandom
+---------------------|----------------------|-----------------------
+Bloqueante           | SIM (quando baixo)   | NÃO (nunca bloqueia)
+Consumo de entropia  | Diminui o pool       | Não diminui
+Vulnerável a DoS     | SIM                  | NÃO
+Desempenho           | Fraco (pode parar)   | Excelente
+Nível de segurança   | Teoricamente mais    | Praticamente equivalente
+Uso recomendado      | Raramente necessário | RECOMENDADO
 
 ================================================================================
-SECURITY LESSONS LEARNED
-================================================================================
-
-1. NEVER use time() for cryptographic seeds
-   - Predictable within small time windows
-   - Only ~7,200 possibilities in 2-hour window
-   - Easily brute-forced in seconds
-
-2. Use Cryptographically Secure PRNGs (CSPRNGs)
-   - Linux: /dev/urandom
-   - Windows: CryptGenRandom()
-   - Python: secrets module
-   - Java: SecureRandom
-
-3. Entropy sources require hardware events
-   - Software alone cannot create true randomness
-   - Need unpredictable timing from physical events
-   - Mouse, keyboard, disk I/O, network interrupts
-
-4. Blocking behavior creates vulnerabilities
-   - /dev/random enables DoS attacks
-   - /dev/urandom is safe and sufficient
-   - Production systems should never block on randomness
-
-5. Historical mistakes from weak RNGs
-   - Netscape SSL (1995): Predictable seed
-   - Debian OpenSSL (2008): Reduced entropy
-   - Android Bitcoin wallets (2013): Weak PRNG
-   - Various IoT devices: Hardcoded seeds
-
-================================================================================
-CONCLUSIONS
-================================================================================
-
-This lab demonstrates critical principles in random number generation:
-
-KEY FINDINGS:
-✓ Time-based seeding (srand(time(NULL))) is catastrophically weak
-✓ Keys generated with time() can be cracked in seconds
-✓ Entropy collection requires unpredictable hardware events
-✓ /dev/random's blocking behavior enables DoS attacks
-✓ /dev/urandom provides excellent security without blocking
-
-RECOMMENDATIONS:
-→ Always use /dev/urandom for cryptographic random numbers on Linux
-→ Never use rand() for security purposes (only for simulations)
-→ Understand the difference between PRNG and CSPRNG
-→ Prefer language-specific crypto libraries (secrets, SecureRandom, etc.)
-
-FINAL TAKEAWAY:
-The difference between using rand() with time() versus /dev/urandom
-is the difference between trivial compromise and strong security.
-Developers MUST understand this distinction to build secure systems.
-
-================================================================================
-Lab completed successfully!
-Generated: $(date)
+Laboratório concluído com sucesso!
 ================================================================================
 EOF
 
 # =============================================================================
-# CLEANUP AND SUMMARY
+# LIMPEZA E SUMÁRIO
 # =============================================================================
 
-echo -e "${GREEN}[*] Cleaning up temporary files...${NC}"
-# Keep temp directory for inspection if needed
-# rm -rf $TEMP_DIR
+echo -e "${VERDE}[*] A limpar ficheiros temporários...${SC}"
+# Manter diretório temporário para inspecção se necessário
+# rm -rf $DIR_TEMP
 
 echo ""
-echo -e "${GREEN}╔════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║          SEED LAB COMPLETE - REPORT GENERATED              ║${NC}"
-echo -e "${GREEN}╚════════════════════════════════════════════════════════════╝${NC}"
+echo -e "${VERDE}╔════════════════════════════════════════════════════════════╗${SC}"
+echo -e "${VERDE}║     SEED LAB CONCLUÍDO - RELATÓRIO GERADO                  ║${SC}"
+echo -e "${VERDE}╚════════════════════════════════════════════════════════════╝${SC}"
 echo ""
-echo -e "${YELLOW}Report saved to: $REPORT${NC}"
-echo -e "${YELLOW}Temp files in: $TEMP_DIR${NC}"
+echo -e "${AMARELO}Relatório guardado em: $RELATORIO${SC}"
+echo -e "${AMARELO}Ficheiros temporários em: $DIR_TEMP${SC}"
 echo ""
-echo -e "${BLUE}Summary of tasks:${NC}"
-echo -e "  ${GREEN}✓${NC} Task 1: Weak key generation demonstrated"
-echo -e "  ${GREEN}✓${NC} Task 2: Brute-force attack proof-of-concept"
-echo -e "  ${GREEN}✓${NC} Task 3: Entropy measurement and analysis"
-echo -e "  ${GREEN}✓${NC} Task 4: /dev/random blocking behavior"
-echo -e "  ${GREEN}✓${NC} Task 5: /dev/urandom quality assessment"
 echo ""
-echo -e "${BLUE}To view the report:${NC}"
-echo -e "  cat $REPORT"
-echo -e "  less $REPORT"
-echo -e "  nano $REPORT"
+echo -e "${AZUL}Para ver o relatório:${SC}"
+echo -e "  cat $RELATORIO"
 echo ""
