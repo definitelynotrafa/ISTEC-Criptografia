@@ -38,7 +38,7 @@ Em cada passo há uma riddle que funciona como dica, podes clicar por cima da pa
 
 > Neste fim de semana existiu uma pequena zeroday e um dos servidores da empresa Antixerox ficou vulnerável, tu, hacker mafarrico, tens o objetivo de tomar o controlo do servidor! Acede ao website para começar:
 
-> -> https://antixeroxcryptolab.netlify.app/
+> -> https://antixeroxcryptolab.netlify.app/ -> site momentaneamente embaixo porque o hosting acabou, caso o professor queira testar o nosso lab pingue-nos no discord ou envie um email para nós abrirmos uma pequena instância no azure. 
 ---
 
 ## Passo 1:
