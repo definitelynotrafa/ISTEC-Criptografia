@@ -2,12 +2,15 @@
 
 Este repositório tem como objetivo documentar todos os seedlabs feitos durante a disciplina de **criptografia** no ISTEC.
 
-## Labs feitos:
-- PKI
-- TLS
-- Smart Contract Reentrancy Attack
-- Oracle Padding Attack
-- Pseudo Random Number Generator
+## Labs feitos
+
+| Lab                                   | Status      | Notas                          | Status |
+|---------------------------------------|-------------|--------------------------------|------  |
+| Smart Contract (Reentrancy)           | - [x]       | Script                         | - [x]  |
+| PKI                                   | - [x]       | Script                         | - [ ]  |
+| Pseudo Random Number Generator        | - [x]       | Script                         | - [x]  |
+| TLS                                   | - [x]       | Script                         | - [x]  |
+| Oracle Padding Attack                 | - [x]       | Script                         | - [ ]  |
 
 ---
 
