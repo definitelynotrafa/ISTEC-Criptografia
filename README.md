@@ -76,7 +76,9 @@ Este repositório é para **fins educacionais apenas**. Os scripts e técnicas a
 - **Rodrigo Baltazar**
 - **Samuel Rocha**
 
-IMAGEM
+<p align="center">
+  <img src="./assets/dreamteam.png" width="200">
+</p>
 
 ---
 
