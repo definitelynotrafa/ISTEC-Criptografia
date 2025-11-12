@@ -2,7 +2,7 @@
 
 Repositório do grupo **AntiXerox** com todos os trabalhos realizados durante a disciplina de Criptografia no ISTEC, incluindo scripts de resolução automática, apresentações e o nosso próprio Seedlab.
 
-IMAGEM
+![IMAGE](./assets/antixerox.png)
 
 ## Sobre o Repositório
 
