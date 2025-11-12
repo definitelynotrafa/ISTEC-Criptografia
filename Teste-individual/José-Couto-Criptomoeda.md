@@ -42,7 +42,7 @@ O princípio baseia-se em propriedades da **aritmética modular** e na **dificul
 
 ### Diagrama Visual do Processo
 
-IMAGEM AQUI RAFA
+![IMAGE](./assets/asset-criptomoedas.png)
 
 ### Passos Simplificados
 
