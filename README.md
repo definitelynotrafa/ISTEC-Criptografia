@@ -19,11 +19,11 @@ Este repositório contém:
 
 | Lab                                   | Status | Script Automático | Documentação  |
 |---------------------------------------|--------|-------------------|---------------|
-| Smart Contract (Reentrancy)          | ✅     | ✅                | ✅            |
-| PKI                                   | ✅     | ❌                | ✅            |
-| Pseudo Random Number Generator        | ✅     | ✅                | ✅            |
-| TLS                                   | ✅     | ✅                | ✅            |
-| Oracle Padding Attack                 | ✅     | ❌                | ✅            |
+| Smart Contract (Reentrancy)          | ✓     | ✓                | ✓            |
+| PKI                                   | ✓     | ✘                | ✓            |
+| Pseudo Random Number Generator        | ✓     | ✓                | ✓            |
+| TLS                                   | ✓     | ✓                | ✓            |
+| Oracle Padding Attack                 | ✓     | ✘                | ✓            |
 
 
 ## XeroxLabs - O Nosso Seedlab
