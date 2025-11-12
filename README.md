@@ -77,7 +77,7 @@ Este repositório é para **fins educacionais apenas**. Os scripts e técnicas a
 - **Samuel Rocha**
 
 <p align="center">
-  <img src="./assets/dreamteam.png" width="200">
+  <img src="./assets/dreamteam.png" width="2000">
 </p>
 
 ---
