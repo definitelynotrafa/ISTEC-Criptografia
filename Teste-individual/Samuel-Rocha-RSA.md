@@ -1,6 +1,6 @@
 # Algoritmo RSA — Cifra Assimétrica
 
-**Autor:** Samuel Rocha | **Turma nº** 2024127
+**Autor:** Samuel Rocha | **Nº** 2024127
 
 ---
 
