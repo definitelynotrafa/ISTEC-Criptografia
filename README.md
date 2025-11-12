@@ -12,7 +12,7 @@ Este repositório contém:
 - **Ataques Documentados**: Guias completos sobre os labs
 - **Scripts Automáticos**: Resolução automática de labs
 - **Apresentação**: Slides e recursos visuais dos nossos trabalhos
-- **Testes Individuais**: Trabalhos sobre AES, Criptomoedas, Kerckhoffs, Segredo Perfeito e RSA
+- **Testes Individuais**: Trabalhos sobre AES, Diffie-Hellman, Kerckhoffs, Segredo Perfeito e RSA
 - **XeroxLabs**: O nosso próprio Seedlab!
 
 ## Labs Completos
