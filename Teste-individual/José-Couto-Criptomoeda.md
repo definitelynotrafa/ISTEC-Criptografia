@@ -1,30 +1,3 @@
-# Criptomoedas
-
-A Criptomoeda é uma moeda digital **descentralizada**, que utiliza a **tecnologia "blockchain"** para garantir segurança, transparência e confiança nas transações.
-
-Em vez de ser controlada por bancos ou governos, a criptomoeda funciona através de uma rede global de computadores que valida e regista todas as operações num **livro público imutável**. Cada transação é protegida por **"criptografia"**, impedindo falsificações ou alterações.
-
-O **Bitcoin** foi a primeira criptomoeda, criada em 2009, e continua a ser a mais conhecida. Desde então, surgiram muitas outras, como **Ethereum**, **Cardano** e **Solana**, que introduzem novas funcionalidades, como os **contratos inteligentes**.
-
-Em termos simples, as criptomoedas permitem enviar e receber valor pela internet de forma rápida, segura e sem intermediários — embora o seu valor de mercado seja altamente **volátil**.
-
----
-
-## Smart Contract
-
-Um **"Smart Contract"** (ou contrato inteligente) é um programa digital que **executa automaticamente regras** e **condições pré-definidas** dentro de uma **blockchain**, sem necessidade de intermediários.
-
-É muito utilizado na rede **"Ethereum"**, onde permite **realizar transações seguras** e automáticas entre partes que **não se conhecem ou não confiam uma na outra**.
-
-De forma simples, um **"Smart Contract"** funciona como um **contrato tradicional**, mas em vez de estar **escrito em papel**, está codificado num **sistema informático**. Quando as condições definidas são cumpridas, o contrato **executa-se sozinho**.
-
-### Exemplo Prático
-
-Imaginemos que quer emprestar 5 moedas **"Ethereum"** a alguém, mas não confia totalmente que essa pessoa as devolva. Pode então criar um **"Smart Contract"** que define as regras: _se o valor não for devolvido até uma data específica, o contrato reverte automaticamente a transação e o dinheiro regressa à sua conta_.
-
-Assim, os **"Smart Contracts"** garantem **transparência**, **segurança** e **autonomia**, eliminando a necessidade de **confiar em terceiros** ou **depender de intermediários** como bancos ou advogados.
-
----
 
 ## Diffie-Hellman
 
